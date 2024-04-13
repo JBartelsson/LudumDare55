@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -11,24 +12,27 @@ public class Entity : MonoBehaviour
     {
         LeftLeg, RightLeg, LeftArm, RightArm, Body, Head
     }
-    public Stats entityStats;
+    public Stats entityBaseStats;
+    public Stats entityFightingStats;
     [Serializable]
-    private class PositionedBodyPart
+    public class PositionedBodyPart
     {
         public SpecificBodyPart bodyPosition;
         public BodyPartSO bodyPartSO;
     }
     [Serializable]
-    private class BodySprite
+    public class BodySprite
     {
         public SpecificBodyPart bodyPosition;
         public SpriteRenderer spriteRenderer;
     }
-    [SerializeField] private List<PositionedBodyPart> bodyParts = new();
-    [SerializeField] private List<BodySprite> bodyPartSprites = new();
-  
+    [SerializeField] public List<PositionedBodyPart> bodyParts = new();
+    [SerializeField] public List<BodySprite> bodyPartSprites = new();
+
+    public Stats EntityFightingStats { get => entityFightingStats; set => entityFightingStats = value; }
+
     // Start is called before the first frame update
-    
+
 
     public void SwitchBodyPart(SpecificBodyPart bodyPosition, BodyPartSO newBodyPart)
     {
@@ -44,10 +48,87 @@ public class Entity : MonoBehaviour
             bodyPartSprite.spriteRenderer.sprite = temp.sprite;
         }
     }
+
+    public int GetAttackDamage()
+    {
+        float critChance = entityBaseStats.Crit * BodyPartManager.Instance.CritChanceBalancingMultiplier;
+        float attack = entityBaseStats.Attack;
+        if (UnityEngine.Random.Range(0, 101) < critChance)
+        {
+            attack = attack * BodyPartManager.Instance.CritChanceMultiplier;
+        }
+        return Mathf.FloorToInt(attack);
+    }
+
+    public bool IsDodging() { 
+        float dodgeChance = entityFightingStats.Dodge * BodyPartManager.Instance.DodgeBalancingMultiplier;
+        if (UnityEngine.Random.Range(0, 101) < dodgeChance)
+        {
+            Debug.Log($"{gameObject.name} dodged the attack!");
+
+            DodgeAnimation();
+            return true;
+        }
+        Debug.Log($"{gameObject.name} will not dodge the attack!");
+
+        return false;
+    }
+
+    public void HitAnimation()
+    {
+
+    }
+
+    public void DodgeAnimation()
+    {
+
+    }
+
+    public void BlockAnimation()
+    {
+
+    }
+
+    public int Block(int damage)
+    {
+        if (entityFightingStats.Block > 0)
+        {
+            entityFightingStats.Block -= damage;
+            Debug.Log(entityFightingStats.Block);
+            Debug.Log($"{gameObject.name} Blocked {damage + entityFightingStats.Block} Damage!");
+            BlockAnimation();
+            return -entityFightingStats.Block;
+        }
+        return damage;
+    }
+
+    public void Hit(int damage)
+    {
+        entityFightingStats.HP -= damage;
+        Debug.Log($"{gameObject.name} hit by {damage} Damage!");
+
+        HitAnimation();
+
+    }
+
+    public bool IsDefeated()
+    {
+        return entityFightingStats.HP <= 0;
+    }
     
     void Start()
     {
         UpdateBodyGraphics();
+    }
+
+    public void ResetStats()
+    {
+        Debug.Log($"Resetting {gameObject.name} Stats!");
+        entityFightingStats = new Stats(entityBaseStats);
+        foreach (var bodyParts in bodyParts)
+        {
+            entityFightingStats.Add(bodyParts.bodyPartSO.stats);
+        }
     }
 
     // Update is called once per frame

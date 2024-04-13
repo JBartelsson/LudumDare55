@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,7 +13,9 @@ public class GameManager : MonoBehaviour
     public GameState currentGameState = GameState.None;
     private Entity playerEntity;
     private Entity enemyEntity;
-    [SerializeField] private bool stopFighting = false;
+    [Header("Fighting Options")]
+    [SerializeField] private bool continueFighting = false;
+    [SerializeField] private float fightAttackDelay = 1f;
 
     private void Awake()
     {
@@ -31,7 +34,7 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.Fighting:
-                StartFighting();
+                StartCoroutine(StartFighting());
                 break;
             case GameState.Choosing:
                 break;
@@ -43,11 +46,42 @@ public class GameManager : MonoBehaviour
     }
 
 
-    public void StartFighting()
+    public IEnumerator StartFighting()
     {
-        while (enemyEntity.entityStats.HP > 0 || playerEntity.entityStats.HP > 0 || !stopFighting)
+        enemyEntity.ResetStats();
+        playerEntity.ResetStats();
+        int round = 0;
+        while (enemyEntity.EntityFightingStats.HP > 0 && playerEntity.EntityFightingStats.HP > 0 && continueFighting)
         {
+            round++;
+            Debug.Log($"=================Round: {round}==================");
+            if (!CheckDodge(enemyEntity))
+            {
+                CalculateAttack(playerEntity, enemyEntity);
+            }
+            yield return new WaitForSeconds(fightAttackDelay);
+            if (!CheckDodge(playerEntity))
+            {
+                CalculateAttack(enemyEntity, playerEntity);
+            }
+            yield return new WaitForSeconds(fightAttackDelay);
 
         }
+    }
+
+    private bool CheckDodge(Entity entity)
+    {
+        return entity.IsDodging();
+    }
+
+    private void CalculateAttack(Entity attacker, Entity target)
+    {
+
+        int LeftOverDamageFromBlock = target.Block(attacker.GetAttackDamage());
+        if (LeftOverDamageFromBlock > 0)
+        {
+            target.Hit(LeftOverDamageFromBlock);
+        }
+
     }
 }

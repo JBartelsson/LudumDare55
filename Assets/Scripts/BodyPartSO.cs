@@ -24,34 +24,8 @@ public class BodyPartSO : ScriptableObject
     [SerializeField] public Entity.SpecificBodyPart bodyPosition;
     [SerializeField] public Rarity rarity;
     [Header("Stats")]
-    [SerializeField] private Stats stats;
+    [SerializeField] public Stats stats;
     [Header("Graphic")]
     [SerializeField] public Sprite sprite;
 }
-[Serializable]
-public class Stats
-{
-    public int HP;
-    public int Attack;
-    public int Block;
-    public int Crit;
-    public int Dodge;
 
-    public Stats(int hP, int attack, int block, int crit, int dodge)
-    {
-        HP = hP;
-        Attack = attack;
-        Block = block;
-        Crit = crit;
-        Dodge = dodge;
-    }
-
-    public Stats()
-    {
-        HP = 0;
-        Attack = 0;
-        Block = 0;
-        Crit = 0;
-        Dodge = 0;
-    }
-}
