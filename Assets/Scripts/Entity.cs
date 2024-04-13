@@ -9,9 +9,13 @@ public class Entity : MonoBehaviour
         LeftLeg, RightLeg, LeftArm, RightArm, Body, Head
     }
     public Stats entityStats;
-    private List<SpecificBodyPart> bodyParts = new();
+    public Dictionary<SpecificBodyPart, BodyPartSO> bodyParts = new();
     // Start is called before the first frame update
     
+    public void SwitchBodyPart(SpecificBodyPart bodyPart, BodyPartSO newBodyPart)
+    {
+        bodyParts[bodyPart] = newBodyPart;
+    }
     
     void Start()
     {
