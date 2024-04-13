@@ -51,7 +51,8 @@ public class GameManager : MonoBehaviour
         enemyEntity.ResetStats();
         playerEntity.ResetStats();
         int round = 0;
-        while (enemyEntity.EntityFightingStats.HP > 0 && playerEntity.EntityFightingStats.HP > 0 && continueFighting)
+        bool playerWin = false;
+        while (continueFighting)
         {
             round++;
             Debug.Log($"=================Round: {round}==================");
@@ -59,13 +60,29 @@ public class GameManager : MonoBehaviour
             {
                 CalculateAttack(playerEntity, enemyEntity);
             }
+            if (enemyEntity.EntityFightingStats.HP <= 0)
+            {
+                playerWin = true;
+                break;
+            }
             yield return new WaitForSeconds(fightAttackDelay);
             if (!CheckDodge(playerEntity))
             {
                 CalculateAttack(enemyEntity, playerEntity);
             }
+            if (playerEntity.EntityFightingStats.HP <= 0)
+            {
+                playerWin = false;
+                break;
+            }
             yield return new WaitForSeconds(fightAttackDelay);
-
+        }
+        if (playerWin)
+        {
+            Debug.Log("Player won!");
+        } else
+        {
+            Debug.Log("Enemy Won!");
         }
     }
 

@@ -51,12 +51,14 @@ public class Entity : MonoBehaviour
 
     public int GetAttackDamage()
     {
-        float critChance = entityBaseStats.Crit * BodyPartManager.Instance.CritChanceBalancingMultiplier;
-        float attack = entityBaseStats.Attack;
+        float critChance = entityFightingStats.Crit * BodyPartManager.Instance.CritChanceBalancingMultiplier;
+        float attack = entityFightingStats.Attack;
         if (UnityEngine.Random.Range(0, 101) < critChance)
         {
             attack = attack * BodyPartManager.Instance.CritChanceMultiplier;
+            Debug.Log($"{gameObject.name} CRITS!!!");
         }
+        Debug.Log($"{gameObject.name} Preparing to Attack for {attack}");
         return Mathf.FloorToInt(attack);
     }
 
@@ -69,7 +71,7 @@ public class Entity : MonoBehaviour
             DodgeAnimation();
             return true;
         }
-        Debug.Log($"{gameObject.name} will not dodge the attack!");
+        //Debug.Log($"{gameObject.name} will not dodge the attack!");
 
         return false;
     }
@@ -91,11 +93,20 @@ public class Entity : MonoBehaviour
 
     public int Block(int damage)
     {
+        //Debug.Log($"{gameObject.name} Trying to block {damage} damage");
+        //Debug.Log($"{gameObject.name} having {entityFightingStats.Block} block");
         if (entityFightingStats.Block > 0)
         {
+            if (entityFightingStats.Block - damage > 0)
+            {
+                Debug.Log($"{gameObject.name} Blocked {damage} Damage!");
+            } else
+            {
+                Debug.Log($"{gameObject.name} Blocked {entityFightingStats.Block} Damage!");
+
+            }
             entityFightingStats.Block -= damage;
-            Debug.Log(entityFightingStats.Block);
-            Debug.Log($"{gameObject.name} Blocked {damage + entityFightingStats.Block} Damage!");
+            
             BlockAnimation();
             return -entityFightingStats.Block;
         }

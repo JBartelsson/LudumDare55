@@ -123,6 +123,53 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &167225296
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 167225297}
+  - component: {fileID: 167225298}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &167225297
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167225296}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2064303004}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &167225298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167225296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9db37a3054f088d42a6ec304594b6704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentGameState: 0
+  continueFighting: 1
+  fightAttackDelay: 2
 --- !u!1 &248453401
 GameObject:
   m_ObjectHideFlags: 0
@@ -524,6 +571,22 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityBaseStats.HP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityBaseStats.Crit
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityBaseStats.Dodge
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityFightingStats.Dodge
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: bodyParts.Array.data[4].bodyPartSO
       value: 
       objectReference: {fileID: 11400000, guid: 0a9f4d8897483714199e49e29f4f14eb, type: 2}
@@ -663,6 +726,12 @@ MonoBehaviour:
   bodyParts:
   - {fileID: 11400000, guid: a6b9a152968f4ba4182634bfc3db896b, type: 2}
   - {fileID: 11400000, guid: d19b93ea3c2be024e9c0a60c05fc4164, type: 2}
+  HPBalancingMultiplier: 1
+  DMGBalancingMultiplier: 1
+  BlockBalancingMultiplier: 1
+  CritChanceBalancingMultiplier: 1
+  DodgeBalancingMultiplier: 1
+  CritChanceMultiplier: 2
 --- !u!1 &2064303003
 GameObject:
   m_ObjectHideFlags: 0
@@ -693,6 +762,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1650044966}
+  - {fileID: 167225297}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3205436436758226242
@@ -705,7 +775,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1015632604985786362, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: m_Name
-      value: Entity
+      value: PlayerEntity
       objectReference: {fileID: 0}
     - target: {fileID: 1015632604985786362, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: m_TagString
@@ -750,6 +820,26 @@ PrefabInstance:
     - target: {fileID: 5875126712852537496, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityBaseStats.HP
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityBaseStats.Crit
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityBaseStats.Block
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityBaseStats.Dodge
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: entityBaseStats.Attack
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
