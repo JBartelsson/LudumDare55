@@ -20,7 +20,7 @@ public class BodyPartSO : ScriptableObject
 
     [SerializeField] public Type type;
     [Header("Game Setting")]
-
+    [SerializeField] public bool isDefault = false;
     [SerializeField] public Entity.SpecificBodyPart bodyPosition;
     [SerializeField] public Rarity rarity;
     [Header("Stats")]

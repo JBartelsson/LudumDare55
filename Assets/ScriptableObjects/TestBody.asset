@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: TestBody
   m_EditorClassIdentifier: 
   type: 0
-  bodyPosition: 0
+  bodyPosition: 4
   rarity: 0
   stats:
     HP: 0
     Attack: 0
     Block: 0
-    Crit: 0
+    Crit: 10
     Dodge: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 41403ab120825734e8a0b47295474bf4, type: 3}

@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: TestLegRight
   m_EditorClassIdentifier: 
   type: 0
-  bodyPosition: 0
+  bodyPosition: 1
   rarity: 0
   stats:
     HP: 0
     Attack: 0
     Block: 0
     Crit: 0
-    Dodge: 0
-  sprite: {fileID: 0}
+    Dodge: 5
+  sprite: {fileID: 21300000, guid: 5eef911c013d9f64ea56d5dce6aaf47a, type: 3}
