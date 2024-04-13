@@ -7,10 +7,7 @@ using static Unity.Collections.AllocatorManager;
 [CreateAssetMenu(menuName = "Scriptable Objects/BodyPart", fileName = "BodyPart")]
 public class BodyPartSO : ScriptableObject
 {
-    public enum BodyPosition
-    {
-        Arm, Leg, Body, Head
-    }
+    
     public enum Type
     {
         FairyTale, Underground, Food
@@ -24,7 +21,7 @@ public class BodyPartSO : ScriptableObject
     [SerializeField] public Type type;
     [Header("Game Setting")]
 
-    [SerializeField] public BodyPosition bodyPosition;
+    [SerializeField] public Entity.SpecificBodyPart bodyPosition;
     [SerializeField] public Rarity rarity;
     [Header("Stats")]
     [SerializeField] private Stats stats;

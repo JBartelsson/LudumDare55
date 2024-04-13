@@ -12,4 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ec4e62461d7cdb4ebad04dd1a9efeff, type: 3}
   m_Name: SchlengoKof
   m_EditorClassIdentifier: 
-  HP: 0
+  type: 0
+  bodyPosition: 0
+  rarity: 0
+  stats:
+    HP: 0
+    Attack: 0
+    Block: 0
+    Crit: 0
+    Dodge: 0
+  sprite: {fileID: 0}
