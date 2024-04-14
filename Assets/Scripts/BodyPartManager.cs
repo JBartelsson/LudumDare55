@@ -96,6 +96,7 @@ public class BodyPartManager : MonoBehaviour
             iterate = missingParts.Count;
         }
         // add missing limb options to shop
+        int notFound = 0;
         for (int i = 0; i < iterate; i++)
         {
             var part = missingParts[i];
@@ -109,11 +110,25 @@ public class BodyPartManager : MonoBehaviour
             }).ToList();
             bool found = false;
             int breakOut = 0;
+            
+            if(elgibleLimbs.Count == 0)
+            {
+                notFound++;
+                continue;
+            }
             while (!found)
             {
                 breakOut++;
                 int limb = Random.Range(0, elgibleLimbs.Count);
-                Debug.Log("Limb:" + limb);
+                Debug.Log("Limb before break:" + limb);
+                int debugger = 0;
+                foreach(var limbusdebugus in elgibleLimbs)
+                {
+                    
+                    Debug.Log("eligible Limb an stelle:"+ debugger + "is: " + limb);
+                    debugger++;
+                }
+                
                 PositionedBodyPart existingLimb = player.bodyParts.FirstOrDefault(i => i.bodyPartSO == elgibleLimbs[limb]);
                 if (null == existingLimb)
                 {
@@ -128,7 +143,7 @@ public class BodyPartManager : MonoBehaviour
 
         }
         // find leftover limbs
-        int leftover = 3 - iterate;
+        int leftover = 3 - iterate + notFound;
         for (int i = 0; i < leftover; i++)
         {
 
