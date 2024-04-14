@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class AudioManager : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class AudioManager : MonoBehaviour
     public Sound[] musicSounds, fairyMusicSounds, foodMusicSounds, undergroundMusicSounds, sfxSounds;
     public AudioSource musicSource, fairyMusicSource, foodMusicSource, undergroundMusicSource, sfxSource;
 
+    [SerializeField] private float minPitch = 0.5f;
+    [SerializeField] private float maxPitch = 1.5f;
+    
     private void Awake()
     {
         if (Instance == null)
@@ -23,6 +27,22 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void PlayHitSound()
+    {
+        if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) && GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground))
+        {
+            PlaySFX("FairyHit");
+        }
+        else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) && GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground))
+        {
+            PlaySFX("FoodHit");
+        }
+        else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) && GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale))
+        {
+            PlaySFX("UndergroundHit");
+        }
+    }
+    
     public void PlaySFX(string name)
     {
         Sound s = Array.Find(sfxSounds, x => x.name == name);
@@ -34,6 +54,9 @@ public class AudioManager : MonoBehaviour
 
         else
         {
+            float randomPitch = Random.Range(minPitch, maxPitch);
+
+            sfxSource.pitch = randomPitch;
             sfxSource.PlayOneShot(s.clip);
         }
     }
@@ -50,11 +73,11 @@ public class AudioManager : MonoBehaviour
           
         if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) >= 1)
         {
-            PlayFairyMusic("FoodMusicLow");
+            PlayFoodMusic("FoodMusicLow");
         }
         else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) >= 3)
         {
-            PlayFairyMusic("FoodMusicHigh");
+            PlayFoodMusic("FoodMusicHigh");
         }
         
         if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) >= 1)
