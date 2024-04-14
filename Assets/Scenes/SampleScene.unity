@@ -542,7 +542,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875126712852537496, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.01
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 5875126712852537496, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -578,7 +578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.HP
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Crit
@@ -791,8 +791,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bodyParts:
-  - {fileID: 11400000, guid: a6b9a152968f4ba4182634bfc3db896b, type: 2}
-  - {fileID: 11400000, guid: d19b93ea3c2be024e9c0a60c05fc4164, type: 2}
+  - {fileID: 11400000, guid: e128a17b4e965e945bc5e60c21fc0c61, type: 2}
+  - {fileID: 11400000, guid: fc0038c033804e84da3f19a1503de6e3, type: 2}
+  - {fileID: 11400000, guid: ef89ef3000c3fab4ea35c87e09d175e1, type: 2}
+  - {fileID: 11400000, guid: b8e910ce7e855d64f8a1f8c604d30b0c, type: 2}
+  - {fileID: 11400000, guid: 1dfa84116eb5cef4081a61eb599dfeda, type: 2}
+  - {fileID: 11400000, guid: ae08a4f8d090fc747ade48a452f389d8, type: 2}
+  - {fileID: 11400000, guid: 6827e8c8b927fcd4f9de3280a2e973fa, type: 2}
+  - {fileID: 11400000, guid: 8254f8bc9d69c3d4a86688228e33a00d, type: 2}
+  - {fileID: 11400000, guid: a7a739b632383f8468182b11eb1fc574, type: 2}
+  - {fileID: 11400000, guid: d2d2e7eb9fa329047aeef2e195cd9551, type: 2}
+  - {fileID: 11400000, guid: 3a8303fc52605ec42b19885d68795ff4, type: 2}
+  - {fileID: 11400000, guid: 38fd38d4ee6f868479e576be8fed7686, type: 2}
+  - {fileID: 11400000, guid: 73a0b16134b906d4e9fd88dc4011d541, type: 2}
+  - {fileID: 11400000, guid: f2d7760d26af0ed4f8473af1e7f329eb, type: 2}
+  - {fileID: 11400000, guid: 5bdf1b6617215c94a8672dc4046c6736, type: 2}
+  - {fileID: 11400000, guid: 209d20fb446a82a41a4fb9c2c9d7f52a, type: 2}
+  - {fileID: 11400000, guid: 7a6eacd940247ed408828ae8cc6bc0f7, type: 2}
+  - {fileID: 11400000, guid: 9f4d80e744d352341b7ec746f896a674, type: 2}
+  - {fileID: 11400000, guid: 3da1bc909a9d2c447ae8f829b42c8acf, type: 2}
   HPBalancingMultiplier: 1
   DMGBalancingMultiplier: 1
   BlockBalancingMultiplier: 1
@@ -980,11 +997,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875126712852537496, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.03
+      value: -3.26
       objectReference: {fileID: 0}
     - target: {fileID: 5875126712852537496, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.01
+      value: -0.35
       objectReference: {fileID: 0}
     - target: {fileID: 5875126712852537496, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1041,54 +1058,6 @@ PrefabInstance:
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Attack
       value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[0].bodyPartSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 461112d0d0b69b746b42951b51364921, type: 2}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[1].bodyPartSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 9654a9004774c8442aa496954616c6b3, type: 2}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[2].bodyPartSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 32ab54b355776ab45819a814157be2c4, type: 2}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[3].bodyPartSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 457e827c93e20de4ea96b060d5546f1b, type: 2}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[4].bodyPartSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 0a9f4d8897483714199e49e29f4f14eb, type: 2}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[5].bodyPartSO
-      value: 
-      objectReference: {fileID: 11400000, guid: 0d5b6e358937edb48819386d8cbda27c, type: 2}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[1].bodyPosition
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[2].bodyPosition
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[3].bodyPosition
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[4].bodyPosition
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
-      propertyPath: standardEnemySetup.Array.data[5].bodyPosition
-      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

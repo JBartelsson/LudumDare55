@@ -57,9 +57,9 @@ public class Entity : MonoBehaviour
         return amount;
     }
 
-    public void SwitchBodyPart(SpecificBodyPart bodyPosition, BodyPartSO newBodyPart)
+    public void SwitchBodyPart(BodyPartSO newBodyPart)
     {
-        bodyParts.Where((x) => x.bodyPosition == bodyPosition).First().bodyPartSO = newBodyPart;
+        bodyParts.Where((x) => x.bodyPosition == newBodyPart.bodyPosition).First().bodyPartSO = newBodyPart;
         UpdateBodyGraphics();
     }
 
@@ -188,13 +188,25 @@ public class Entity : MonoBehaviour
         UpdateBodyGraphics();
     }
 
-    public void ResetStats()
+    public void CalculateStats()
     {
         Debug.Log($"Resetting {gameObject.name} Stats!");
         entityFightingStats = new Stats(entityBaseStats);
         foreach (var bodyParts in bodyParts)
         {
             entityFightingStats.Add(bodyParts.bodyPartSO.stats);
+        }
+    }
+
+    public void ResetEnemy()
+    {
+        if (!isPlayer)
+        {
+            bodyParts.Clear();
+            bodyParts.AddRange(standardEnemySetup);
+        } else
+        {
+            Debug.LogError("Trying to reset Player!");
         }
     }
 

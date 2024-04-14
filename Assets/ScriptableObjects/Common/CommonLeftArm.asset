@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ec4e62461d7cdb4ebad04dd1a9efeff, type: 3}
-  m_Name: CommonHead
+  m_Name: CommonLeftArm
   m_EditorClassIdentifier: 
   type: 0
   isDefault: 0
-  bodyPosition: 5
+  bodyPosition: 2
   rarity: 0
   stats:
     HP: 0
-    Attack: 0
+    Attack: 10
     Block: 0
     Crit: 0
-    Dodge: 10
-  sprite: {fileID: 21300000, guid: e770c9d73c888154b9386cc2dd176763, type: 3}
+    Dodge: 0
+  sprite: {fileID: 21300000, guid: 674f75b1ae0d2dc418403cfec661e25b, type: 3}

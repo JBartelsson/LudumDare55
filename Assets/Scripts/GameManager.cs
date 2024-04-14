@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices.WindowsRuntime;
+using UnityEditor;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -19,7 +20,7 @@ public class GameManager : MonoBehaviour
     [Header("Fighting Options")]
     [SerializeField] private bool continueFighting = false;
     [SerializeField] private float fightAttackDelay = 1f;
-
+    private int round = 1;
     private void Awake()
     {
         Instance = this;
@@ -43,13 +44,13 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(StartFighting());
                 break;
             case GameState.Choosing:
-                SwitchState(GameState.Fighting);
                 break;
             case GameState.Pause:
                 break;
             case GameState.None:
                 break;
         }
+        currentGameState = newState;
     }
 
     public int GetAmountOfItemsOfPlayer(BodyPartSO.Type type)
@@ -60,8 +61,8 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator StartFighting()
     {
-        enemyEntity.ResetStats();
-        playerEntity.ResetStats();
+        enemyEntity.CalculateStats();
+        playerEntity.CalculateStats();
         int round = 0;
         bool playerWin = false;
         AudioManager.Instance.PlayFightMusic();
@@ -121,25 +122,40 @@ public class GameManager : MonoBehaviour
 
     public void HandleWin()
     {
-        CreateNewEnemy();
+        round++;
         SwitchState(GameState.Choosing);
+        CreateNewEnemy();
     }
 
     public void CreateNewEnemy()
     {
         List<Entity.SpecificBodyPart> list = new List<Entity.SpecificBodyPart>() { Entity.SpecificBodyPart.LeftLeg, Entity.SpecificBodyPart.RightLeg, Entity.SpecificBodyPart.LeftArm, Entity.SpecificBodyPart.RightArm, Entity.SpecificBodyPart.Body, Entity.SpecificBodyPart.Head };
         int nonDefaultItemsOfPlayer = playerEntity.bodyParts.Where((x) => { return !x.bodyPartSO.isDefault; }).Count();
+        if (nonDefaultItemsOfPlayer == 0) nonDefaultItemsOfPlayer = 1;
+        enemyEntity.ResetEnemy();
         for (int i = 0; i < nonDefaultItemsOfPlayer; i++)
         {
             BodyPartSO enemyPart = BodyPartManager.Instance.DrawEnemyParts(list[i]);
+            Debug.Log($"Enemy got equipped with {enemyPart.name}");
+            enemyEntity.SwitchBodyPart(enemyPart);
+
 
         }
         Debug.Log($"Non default items: {nonDefaultItemsOfPlayer}");
     }
 
+    private void Update()
+    {
+        if (currentGameState == GameState.Choosing && Input.GetKeyDown(KeyCode.Space))
+        {
+
+            SwitchState(GameState.Fighting);
+        }
+    }
+
     public void SwitchBodyPart(BodyPartSO bodyPartSO)
     {
-        playerEntity.SwitchBodyPart(bodyPartSO.bodyPosition, bodyPartSO);
+        playerEntity.SwitchBodyPart(bodyPartSO);
     }
 
     private void CalculateAttack(Entity attacker, Entity target)
