@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   isDefault: 0
-  bodyPartname: Leg of a Skeleton
+  bodyPartname: Default Mokujin Leg
   bodyPosition: 0
   rarity: 0
   stats:
@@ -23,4 +23,4 @@ MonoBehaviour:
     Block: 2
     Crit: 0
     Dodge: 1
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: 1d248673f8948894c8d35e654f357d36, type: 3}

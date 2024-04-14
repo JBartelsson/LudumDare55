@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   isDefault: 0
-  bodyPartname: Mokujins Leg
+  bodyPartname: Golden Mokujin Leg
   bodyPosition: 3
-  rarity: 1
+  rarity: 2
   stats:
     HP: 0
     Attack: 6
     Block: 0
     Crit: 4
     Dodge: 0
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: 4f59a77d4fb763445b3abfae7c039521, type: 3}

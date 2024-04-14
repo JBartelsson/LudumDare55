@@ -23,4 +23,4 @@ MonoBehaviour:
     Block: 4
     Crit: 1
     Dodge: 0
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: 5b4f30fcf8f2c4f47b8379e413de61e3, type: 3}

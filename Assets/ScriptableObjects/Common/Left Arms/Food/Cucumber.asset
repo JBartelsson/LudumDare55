@@ -16,11 +16,11 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Cucumber
   bodyPosition: 2
-  rarity: 1
+  rarity: 2
   stats:
     HP: 0
     Attack: 8
     Block: 0
     Crit: 0
     Dodge: 2
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: ebc578cef1958934399c1e568c93d90c, type: 3}

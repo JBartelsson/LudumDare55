@@ -14,13 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 1
   isDefault: 0
-  bodyPartname: Arm of a Knight
+  bodyPartname: Red Mokujin Arm
   bodyPosition: 2
-  rarity: 1
+  rarity: 2
   stats:
     HP: 2
     Attack: 2
     Block: 4
     Crit: 2
     Dodge: 0
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: 6934ace364f8fa342bc8406acbdace2e, type: 3}
