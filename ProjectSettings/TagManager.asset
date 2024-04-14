@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: bg
+    uniqueID: 4148042521
+    locked: 0
   - name: Legs
     uniqueID: 1673198115
     locked: 0

@@ -112,7 +112,7 @@ public class BodyPartManager : MonoBehaviour
             while (!found)
             {
                 breakOut++;
-                int limb = Random.Range(0, elgibleLimbs.Count - 1);
+                int limb = Random.Range(0, elgibleLimbs.Count);
                 Debug.Log("Limb:" + limb);
                 PositionedBodyPart existingLimb = player.bodyParts.FirstOrDefault(i => i.bodyPartSO == elgibleLimbs[limb]);
                 if (null == existingLimb)
@@ -144,7 +144,7 @@ public class BodyPartManager : MonoBehaviour
             while (!found)
             {
                 breakOut++;
-                int limb = Random.Range(0, elgibleLimbs.Count - 1);
+                int limb = Random.Range(0, elgibleLimbs.Count);
                 PositionedBodyPart existingLimb = player.bodyParts.FirstOrDefault(i => i.bodyPartSO == elgibleLimbs[limb]);
                 if (null == existingLimb && !shopLimbs.Contains(elgibleLimbs[limb]))
                 {
@@ -218,7 +218,7 @@ public class BodyPartManager : MonoBehaviour
         }).ToList();
 
 
-        int limb = Random.Range(0, elgibleLimbs.Count - 1);
+        int limb = Random.Range(0, elgibleLimbs.Count);
         return elgibleLimbs[limb];
 
 

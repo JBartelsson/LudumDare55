@@ -145,10 +145,8 @@ public class ChangeButton : MonoBehaviour
         //rarity rare violet
         //ColorUtility.TryParseHtmlString("#B600E2", out rarityColor2[2]);
 
-        if (!currentPart.isDefault)
-        {
             changeButtonContent(currentPart);
-        }
+        
 
     }
 

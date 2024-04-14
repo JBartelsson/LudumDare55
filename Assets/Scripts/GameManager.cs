@@ -35,7 +35,9 @@ public class GameManager : MonoBehaviour
         enemyEntity = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Entity>();
 
         SwitchState(currentGameState);
+        CreateNewEnemy();
         Invoke(nameof(InitialShop), .1f);
+
         Debug.Log($"Fairytale: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale)}");
         Debug.Log($"Underground: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground)}");
         Debug.Log($"Food: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food)}");
@@ -115,7 +117,7 @@ public class GameManager : MonoBehaviour
         if (playerWin)
         {
             Debug.Log("Player won!");
-            HandleWin();
+            StartCoroutine(HandleWin());
         }
         else
         {
@@ -140,9 +142,10 @@ public class GameManager : MonoBehaviour
         SwitchState(GameState.GameOver);
     }
 
-    public void HandleWin()
+    public IEnumerator HandleWin()
     {
         round++;
+        yield return new WaitForSeconds(.8f);
         SwitchState(GameState.Choosing);
         CreateNewEnemy();
         BodyPartManager.Instance.increaseOdds(round);
@@ -151,8 +154,15 @@ public class GameManager : MonoBehaviour
     public void CreateNewEnemy()
     {
         List<Entity.SpecificBodyPart> list = new List<Entity.SpecificBodyPart>() { Entity.SpecificBodyPart.LeftLeg, Entity.SpecificBodyPart.RightLeg, Entity.SpecificBodyPart.LeftArm, Entity.SpecificBodyPart.RightArm, Entity.SpecificBodyPart.Body, Entity.SpecificBodyPart.Head };
-        int nonDefaultItemsOfPlayer = playerEntity.bodyParts.Where((x) => { return !x.bodyPartSO.isDefault; }).Count();
-        if (nonDefaultItemsOfPlayer == 0) nonDefaultItemsOfPlayer = 1;
+        int nonDefaultItemsOfPlayer = playerEntity.bodyParts.Where((x) => { return !x.bodyPartSO.isDefault; }).Count() + 1;
+        if (nonDefaultItemsOfPlayer == 0)
+        {
+            nonDefaultItemsOfPlayer = 1;
+        }
+        if (nonDefaultItemsOfPlayer >= list.Count)
+        {
+            nonDefaultItemsOfPlayer = list.Count - 1;
+        }
         enemyEntity.ResetEnemy();
         for (int i = 0; i < nonDefaultItemsOfPlayer; i++)
         {
