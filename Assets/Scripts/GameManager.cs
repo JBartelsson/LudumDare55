@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(StartFighting());
                 break;
             case GameState.Choosing:
+                OpenShop();
                 break;
             case GameState.Pause:
                 break;
@@ -156,21 +157,19 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (currentGameState == GameState.Choosing && Input.GetKeyDown(KeyCode.Space))
-        {
-
-            SwitchState(GameState.Fighting);
-        }
+        
     }
 
     public void SwitchBodyPart(BodyPartSO bodyPartSO)
     {
         playerEntity.SwitchBodyPart(bodyPartSO);
         shopWindow.CloseShop();
+        SwitchState(GameState.Fighting);
     }
 
     public void SkipChoice()
     {
+        SwitchState(GameState.Fighting);
         shopWindow.CloseShop();
     }
 

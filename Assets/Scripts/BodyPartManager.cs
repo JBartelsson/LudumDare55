@@ -21,12 +21,12 @@ public class BodyPartManager : MonoBehaviour
 
     //Booster UI stuff
     [SerializeField] public int stage = 0;
-    [SerializeField] public Entity player;
     public int[] chance = { 100, 90, 50 };
 
     public List<BodyPartSO> DrawParts()
     {
         //
+        Entity player = GameManager.Instance.playerEntity;
         List<BodyPartSO> shopLimbs = new List<BodyPartSO>();
         List<Entity.SpecificBodyPart> missingParts = new List<Entity.SpecificBodyPart>
             {Entity.SpecificBodyPart.LeftLeg, Entity.SpecificBodyPart.RightLeg, Entity.SpecificBodyPart.LeftArm, Entity.SpecificBodyPart.RightArm, Entity.SpecificBodyPart.Body, Entity.SpecificBodyPart.Head};
@@ -102,8 +102,10 @@ public class BodyPartManager : MonoBehaviour
 
             }).ToList();
             bool found = false;
+            int breakOut = 0;
             while (!found)
             {
+                breakOut++;
                 int limb = Random.Range(0, elgibleLimbs.Count - 1);
                 Debug.Log("Limb:" + limb);
                 PositionedBodyPart existingLimb = player.bodyParts.FirstOrDefault(i => i.bodyPartSO == elgibleLimbs[limb]);
@@ -112,6 +114,10 @@ public class BodyPartManager : MonoBehaviour
                     shopLimbs.Add(elgibleLimbs[limb]);
                     found = true;
                 }
+                if(breakOut > 100)
+                {
+                    break;
+                }
             }
 
         }
@@ -119,7 +125,6 @@ public class BodyPartManager : MonoBehaviour
         int leftover = 3 - iterate;
         for (int i = 0; i < leftover; i++)
         {
-            var part = missingParts[i];
 
             //filter limb list
             List<BodyPartSO> elgibleLimbs = BodyPartManager.Instance.bodyParts.Where((bodyPart) =>
@@ -128,14 +133,21 @@ public class BodyPartManager : MonoBehaviour
 
             }).ToList();
             bool found = false;
+            int breakOut = 0;
+
             while (!found)
             {
+                breakOut++;
                 int limb = Random.Range(0, elgibleLimbs.Count - 1);
                 PositionedBodyPart existingLimb = player.bodyParts.FirstOrDefault(i => i.bodyPartSO == elgibleLimbs[limb]);
                 if (null == existingLimb && !shopLimbs.Contains(elgibleLimbs[limb]))
                 {
                     shopLimbs.Add(elgibleLimbs[limb]);
                     found = true;
+                }
+                if (breakOut > 100)
+                {
+                    break;
                 }
             }
 

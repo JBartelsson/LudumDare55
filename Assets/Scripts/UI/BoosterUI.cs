@@ -21,8 +21,8 @@ public class BoosterUI : MonoBehaviour
     {
 
         Upgrade_button1.changeButtonContent(shopItems[0]);
-        Upgrade_button1.changeButtonContent(shopItems[1]);
-        Upgrade_button1.changeButtonContent(shopItems[2]);
+        Upgrade_button2.changeButtonContent(shopItems[1]);
+        Upgrade_button3.changeButtonContent(shopItems[2]);
         shopMenu.SetActive(true);
     }
 
@@ -34,7 +34,7 @@ public class BoosterUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        shopMenu.SetActive(false);
     }
 
     // Update is called once per frame

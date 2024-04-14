@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Linq;
 
 public class ChangeButton : MonoBehaviour
 {
@@ -32,6 +33,7 @@ public class ChangeButton : MonoBehaviour
     [SerializeField] private TMP_Text dodge;
 
     [SerializeField] private BodyPartSO currentPart;
+    [SerializeField] private ChangeButton currentButton;
 
 
     [SerializeField] 
@@ -75,6 +77,11 @@ public class ChangeButton : MonoBehaviour
 
     }
 
+    public void ChangeCurrent()
+    {
+        BodyPartSO playerCurrentPart = GameManager.Instance.playerEntity.bodyParts.Where((x) => { return x.bodyPosition == currentPart.bodyPosition; }).First().bodyPartSO;
+        currentButton.changeButtonContent(playerCurrentPart);
+    }
 
     public void onClick()
     {
@@ -141,7 +148,7 @@ public class ChangeButton : MonoBehaviour
         {
             changeButtonContent(currentPart);
         }
-        
+
     }
 
     // Update is called once per frame
