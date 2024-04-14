@@ -32,7 +32,12 @@ public class BodyPartSO : ScriptableObject
 
     private void Awake()
     {
-        if (rarity == Rarity.Rare)
+        int sum = stats.HP + stats.Attack + stats.Block + stats.Dodge + stats.Crit;
+        if (sum == 10)
+        {
+            rarity = Rarity.Rare;
+        }
+        if (sum == 15)
         {
             rarity = Rarity.Legendary;
         }
