@@ -793,6 +793,14 @@ PrefabInstance:
       propertyPath: InitialModule.startSize.scalar
       value: 6.01
       objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 55ddb5794ff979445affbc036f2aca7c, type: 3}
+      propertyPath: m_SortingLayer
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 55ddb5794ff979445affbc036f2aca7c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -146924775
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -956,7 +964,7 @@ PrefabInstance:
       objectReference: {fileID: 36900330}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.HP
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Crit
@@ -1146,6 +1154,14 @@ PrefabInstance:
     - target: {fileID: 19800000, guid: 55ddb5794ff979445affbc036f2aca7c, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 6.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 55ddb5794ff979445affbc036f2aca7c, type: 3}
+      propertyPath: m_SortingLayer
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 19900000, guid: 55ddb5794ff979445affbc036f2aca7c, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -146924775
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
