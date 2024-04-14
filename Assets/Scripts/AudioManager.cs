@@ -27,6 +27,14 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public void StopMusic()
+    {
+        musicSource.Stop();
+        fairyMusicSource.Stop();
+        foodMusicSource.Stop();
+        undergroundMusicSource.Stop();
+    }
+    
     public void PlayHitSound()
     {
         Debug.Log("Try to Hit");
@@ -62,10 +70,10 @@ public class AudioManager : MonoBehaviour
         PlaySFXLayer("Crit");
     }
 
-    public void PlayLowLifeLoop()
+    /*public void PlayLowLifeLoop()
     {
         PlayLoopedSFX("LowLifeLoop");
-    }
+    }*/
     
     public void PlaySFX(string name)
     {
@@ -121,7 +129,7 @@ public class AudioManager : MonoBehaviour
         }
     }
     
-    public void PlayLoopedSFX(string name)
+    /*public void PlayLoopedSFX(string name)
     {
         Sound s = Array.Find(loopedSFXSounds, x => x.name == name);
 
@@ -135,7 +143,7 @@ public class AudioManager : MonoBehaviour
             loopedSFXSource.clip = s.clip;
             loopedSFXSource.Play();
         }
-    }
+    }*/
     
     public void StopLoopedSFX()
     {
