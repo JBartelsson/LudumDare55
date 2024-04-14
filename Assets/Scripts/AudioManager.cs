@@ -8,8 +8,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     
-    public Sound[] musicSounds, fairyMusicSounds, foodMusicSounds, undergroundMusicSounds, loopedSFXSounds, sfxSounds, sfxLayerSounds;
-    public AudioSource musicSource, fairyMusicSource, foodMusicSource, undergroundMusicSource, loopedSFXSource, sfxSource, sfxLayerSource;
+    public Sound[] musicSounds, fairyMusicSounds, foodMusicSounds, undergroundMusicSounds, loopedSFXSounds, sfxSounds, sfxDefenseSounds, sfxLayerSounds;
+    public AudioSource musicSource, fairyMusicSource, foodMusicSource, undergroundMusicSource, loopedSFXSource, sfxSource, sfxDefenseSource, sfxLayerSource;
 
     [SerializeField] private float minPitch = 0.5f;
     [SerializeField] private float maxPitch = 1.5f;
@@ -48,7 +48,12 @@ public class AudioManager : MonoBehaviour
 
     public void PlayDodgeSound()
     {
-        PlaySFX("Dodge");
+        PlaySFXDefense("Dodge");
+    }
+    
+    public void PlayShieldSound()
+    {
+        PlaySFXDefense("Shield");
     }
     
     public void PlayCritSound()
@@ -77,6 +82,24 @@ public class AudioManager : MonoBehaviour
 
             sfxSource.pitch = randomPitch;
             sfxSource.PlayOneShot(s.clip);
+        }
+    }
+    
+    public void PlaySFXDefense(string name)
+    {
+        Sound s = Array.Find(sfxDefenseSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+
+        else
+        {
+            float randomPitch = Random.Range(minPitch, maxPitch);
+
+            sfxDefenseSource.pitch = randomPitch;
+            sfxDefenseSource.PlayOneShot(s.clip);
         }
     }
     
