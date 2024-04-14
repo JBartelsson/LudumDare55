@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   isDefault: 1
+  bodyPartname: 
   bodyPosition: 0
   rarity: 0
   stats:
-    HP: 10
+    HP: 0
     Attack: 0
     Block: 0
     Crit: 0

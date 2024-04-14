@@ -39,6 +39,24 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Legs
+    uniqueID: 1673198115
+    locked: 0
+  - name: Arm
+    uniqueID: 3756813335
+    locked: 0
+  - name: Body
+    uniqueID: 159675065
+    locked: 0
+  - name: Head
+    uniqueID: 3120183535
+    locked: 0
+  - name: FX
+    uniqueID: 611844253
+    locked: 0
+  - name: FXFONT
+    uniqueID: 644932411
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0

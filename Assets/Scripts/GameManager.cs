@@ -4,7 +4,9 @@ using System.Linq;
 using System.Runtime.ConstrainedExecution;
 using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEditor;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static Entity;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : MonoBehaviour
@@ -12,7 +14,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
     public enum GameState
     {
-        Fighting, Choosing, Pause, None
+        Fighting, Choosing, Pause, None, GameOver
     }
     public GameState currentGameState = GameState.None;
     public Entity playerEntity;
@@ -21,7 +23,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private bool continueFighting = false;
     [SerializeField] private float fightAttackDelay = 1f;
     [SerializeField] private BoosterUI shopWindow;
-    private int round = 1;
+    [SerializeField] GameOverUI gameOverUI;
+    public int round = 1;
     private void Awake()
     {
         Instance = this;
@@ -32,6 +35,7 @@ public class GameManager : MonoBehaviour
         enemyEntity = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Entity>();
 
         SwitchState(currentGameState);
+        Invoke(nameof(InitialShop), .1f);
         Debug.Log($"Fairytale: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale)}");
         Debug.Log($"Underground: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground)}");
         Debug.Log($"Food: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food)}");
@@ -46,10 +50,14 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Choosing:
                 OpenShop();
+                AudioManager.Instance.StopMusic();
                 break;
             case GameState.Pause:
                 break;
             case GameState.None:
+                break;
+            case GameState.GameOver:
+                gameOverUI.OpenGameOver();
                 break;
         }
         currentGameState = newState;
@@ -78,7 +86,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(.33f);
             if (!CheckDodge(enemyEntity))
             {
-                
+
                 CalculateAttack(playerEntity, enemyEntity);
             }
             UpdateStats();
@@ -92,7 +100,7 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(.33f);
             if (!CheckDodge(playerEntity))
             {
-                
+
 
                 CalculateAttack(enemyEntity, playerEntity);
             }
@@ -108,7 +116,8 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Player won!");
             HandleWin();
-        } else
+        }
+        else
         {
             TriggerGameOver();
 
@@ -128,7 +137,7 @@ public class GameManager : MonoBehaviour
 
     public void TriggerGameOver()
     {
-
+        SwitchState(GameState.GameOver);
     }
 
     public void HandleWin()
@@ -136,6 +145,7 @@ public class GameManager : MonoBehaviour
         round++;
         SwitchState(GameState.Choosing);
         CreateNewEnemy();
+        BodyPartManager.Instance.increaseOdds(round);
     }
 
     public void CreateNewEnemy()
@@ -157,7 +167,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        
+
     }
 
     public void SwitchBodyPart(BodyPartSO bodyPartSO)
@@ -173,6 +183,40 @@ public class GameManager : MonoBehaviour
         shopWindow.CloseShop();
     }
 
+    public void InitialShop()
+    {
+        List<BodyPartSO> elgibleLimbs = BodyPartManager.Instance.bodyParts.Where((bodyPart) =>
+        {
+            return (bodyPart.bodyPosition == Entity.SpecificBodyPart.Head && (int)bodyPart.rarity == 0);
+
+        }).ToList();
+        int breakOut = 0;
+        List<BodyPartSO> shopLimbs = new List<BodyPartSO>();
+        for (int i = 0; i < 3; i++)
+        {
+            bool found = false;
+
+            while (!found)
+            {
+                breakOut++;
+                int limb = Random.Range(0, elgibleLimbs.Count);
+                Debug.Log("Limb:" + limb);
+
+                if (!shopLimbs.Contains(elgibleLimbs[limb]))
+                {
+                    shopLimbs.Add(elgibleLimbs[limb]);
+                    found = true;
+                }
+                if (breakOut > 100)
+                {
+                    break;
+                }
+            }
+        }
+        Debug.Log($"Shop LIMBS COUNT: {shopLimbs.Count}");
+        shopWindow.DrawShop(shopLimbs);
+
+    }
     public void OpenShop()
     {
         List<BodyPartSO> shopItems = BodyPartManager.Instance.DrawParts();

@@ -21,7 +21,13 @@ public class BodyPartManager : MonoBehaviour
 
     //Booster UI stuff
     [SerializeField] public int stage = 0;
-    public int[] chance = { 100, 90, 50 };
+    public int[] chance = { 100, 5, 0 };
+
+    public void increaseOdds(int count)
+    {
+        chance[1] = 2 * count;
+        chance[2] = (int)(0.1f * (count * count));
+    }
 
     public List<BodyPartSO> DrawParts()
     {

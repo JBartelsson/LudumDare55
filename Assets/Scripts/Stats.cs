@@ -43,4 +43,5 @@ public class Stats
         Crit += otherStats.Crit;
         Dodge += otherStats.Dodge;
     }
+    
 }

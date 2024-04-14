@@ -47,6 +47,7 @@ public class ChangeButton : MonoBehaviour
         block.SetText(item.stats.Block.ToString());
         crit.SetText(item.stats.Crit.ToString());
         dodge.SetText(item.stats.Dodge.ToString());
+        name.SetText(item.bodyPartname);
 
         int typeNum = (int)item.type;
         int rarity = (int)item.rarity;

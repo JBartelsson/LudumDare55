@@ -129,6 +129,7 @@ public class Entity : MonoBehaviour
 
     public void BlockAnimation(int damage)
     {
+        AudioManager.Instance.PlayShieldSound();
         AnimationManager.Instance.BlockEffect(animationPoint.transform, blockAnimationPosition.transform.position, blockNumberAnimationPosition.transform.position, damage);
 
     }
@@ -204,9 +205,10 @@ public class Entity : MonoBehaviour
     {
         Debug.Log($"Resetting {gameObject.name} Stats!");
         entityFightingStats = new Stats(entityBaseStats);
-        foreach (var bodyParts in bodyParts)
+        foreach (var bodyPart in bodyParts)
         {
-            entityFightingStats.Add(bodyParts.bodyPartSO.stats);
+            Debug.Log($"{bodyPart.bodyPartSO.stats.HP}, {bodyPart.bodyPartSO.stats.Attack}, {bodyPart.bodyPartSO.stats.Block}, {bodyPart.bodyPartSO.stats.Crit}, {bodyPart.bodyPartSO.stats.Dodge}");
+            entityFightingStats.Add(bodyPart.bodyPartSO.stats);
         }
     }
 
