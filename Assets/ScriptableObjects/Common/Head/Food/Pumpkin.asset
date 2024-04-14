@@ -16,7 +16,7 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Pumpkin
   bodyPosition: 5
-  rarity: 3
+  rarity: 1
   stats:
     HP: 3
     Attack: 6

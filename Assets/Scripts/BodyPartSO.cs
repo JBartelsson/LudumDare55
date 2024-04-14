@@ -14,7 +14,7 @@ public class BodyPartSO : ScriptableObject
     }
     public enum Rarity
     {
-        Common, Uncommon, Rare, Legendary
+        Common, Rare, Legendary
     }
     [Header("Sound & Graphic Setting")]
 
@@ -28,5 +28,7 @@ public class BodyPartSO : ScriptableObject
     [SerializeField] public Stats stats;
     [Header("Graphic")]
     [SerializeField] public Sprite sprite;
+
+    
 }
 

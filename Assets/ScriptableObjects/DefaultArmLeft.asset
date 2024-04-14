@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   isDefault: 1
-  bodyPartname: 
+  bodyPartname: Default Left Arm
   bodyPosition: 2
   rarity: 0
   stats:

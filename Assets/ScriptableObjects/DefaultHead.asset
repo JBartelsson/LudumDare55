@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   isDefault: 1
-  bodyPartname: 
+  bodyPartname: Default Head
   bodyPosition: 5
   rarity: 0
   stats:
