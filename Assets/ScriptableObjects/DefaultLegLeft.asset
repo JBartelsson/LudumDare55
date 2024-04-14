@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ec4e62461d7cdb4ebad04dd1a9efeff, type: 3}
-  m_Name: TestBody
+  m_Name: DefaultLegLeft
   m_EditorClassIdentifier: 
   type: 0
   isDefault: 1
-  bodyPosition: 4
+  bodyPosition: 0
   rarity: 0
   stats:
-    HP: 0
+    HP: 10
     Attack: 0
     Block: 0
-    Crit: 10
+    Crit: 0
     Dodge: 0
-  sprite: {fileID: 21300000, guid: 41403ab120825734e8a0b47295474bf4, type: 3}
+  sprite: {fileID: 21300000, guid: a8bc6cc32dabae341bb898033917c10f, type: 3}

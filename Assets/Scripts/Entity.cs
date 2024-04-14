@@ -38,6 +38,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private GameObject attackNumberAnimationPosition;
     [SerializeField] private Animator attackAnimator;
     [SerializeField] bool isPlayer = false;
+    public List<PositionedBodyPart> standardEnemySetup;
 
     public Stats EntityFightingStats { get => entityFightingStats; set => entityFightingStats = value; }
 

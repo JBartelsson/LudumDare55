@@ -129,12 +129,17 @@ public class GameManager : MonoBehaviour
     {
         List<Entity.SpecificBodyPart> list = new List<Entity.SpecificBodyPart>() { Entity.SpecificBodyPart.LeftLeg, Entity.SpecificBodyPart.RightLeg, Entity.SpecificBodyPart.LeftArm, Entity.SpecificBodyPart.RightArm, Entity.SpecificBodyPart.Body, Entity.SpecificBodyPart.Head };
         int nonDefaultItemsOfPlayer = playerEntity.bodyParts.Where((x) => { return !x.bodyPartSO.isDefault; }).Count();
-
         for (int i = 0; i < nonDefaultItemsOfPlayer; i++)
         {
+            BodyPartSO enemyPart = BodyPartManager.Instance.DrawEnemyParts(list[i]);
 
         }
         Debug.Log($"Non default items: {nonDefaultItemsOfPlayer}");
+    }
+
+    public void SwitchBodyPart(BodyPartSO bodyPartSO)
+    {
+        playerEntity.SwitchBodyPart(bodyPartSO.bodyPosition, bodyPartSO);
     }
 
     private void CalculateAttack(Entity attacker, Entity target)

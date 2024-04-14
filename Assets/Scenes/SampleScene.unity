@@ -578,7 +578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.HP
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Crit
@@ -799,6 +799,9 @@ MonoBehaviour:
   CritChanceBalancingMultiplier: 1
   DodgeBalancingMultiplier: 1
   CritChanceMultiplier: 2
+  stage: 0
+  player: {fileID: 0}
+  chance: 640000005a00000032000000
 --- !u!1 &1674107675
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,7 +857,8 @@ MonoBehaviour:
   dodgeTextEffect: {fileID: 6620339049064059371, guid: fe6e5318cdd45ab48bd9416d2ff26239, type: 3}
   blockedPosition: {fileID: 0}
   attackNumberText: {fileID: 7038717747116126592, guid: e0232756ed830a949b9907e1577b9d83, type: 3}
-  blockNumberText: {fileID: 0}
+  blockNumberText: {fileID: 7038717747116126592, guid: 085182f71dd3f224887150bc630cdd43, type: 3}
+  critNumberText: {fileID: 7038717747116126592, guid: 97496111da325a94fa90c08d35e32801, type: 3}
   effectTime: 2.5
 --- !u!1 &1696716832
 GameObject:
@@ -1024,7 +1028,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Crit
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Block
@@ -1037,6 +1041,54 @@ PrefabInstance:
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Attack
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[0].bodyPartSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 461112d0d0b69b746b42951b51364921, type: 2}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[1].bodyPartSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 9654a9004774c8442aa496954616c6b3, type: 2}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[2].bodyPartSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 32ab54b355776ab45819a814157be2c4, type: 2}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[3].bodyPartSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 457e827c93e20de4ea96b060d5546f1b, type: 2}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[4].bodyPartSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a9f4d8897483714199e49e29f4f14eb, type: 2}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[5].bodyPartSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 0d5b6e358937edb48819386d8cbda27c, type: 2}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[1].bodyPosition
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[2].bodyPosition
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[3].bodyPosition
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[4].bodyPosition
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
+      propertyPath: standardEnemySetup.Array.data[5].bodyPosition
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
