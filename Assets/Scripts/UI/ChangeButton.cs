@@ -6,9 +6,10 @@ using TMPro;
 
 public class ChangeButton : MonoBehaviour
 {
-    Color commonColor = new Color();
-    Color uncommonColor = new Color();
-    Color rareColor = new Color();
+    
+    public Color[] rarityColor = {new Color(), new Color(), new Color()};
+    public Color[] typeColor1 = { new Color(), new Color(), new Color() };
+    public Color[] typeColor2 = { new Color(), new Color(), new Color() };
     // Start is called before the first frame update
     [SerializeField] private Image frame;
     [SerializeField] private Image bottomRight;
@@ -31,12 +32,20 @@ public class ChangeButton : MonoBehaviour
 
     void changeButtonContent(BodyPartSO item)
     {
+        type.SetText(item.type.ToString());
+        hp.SetText(item.stats.HP.ToString());
+        attack.SetText(item.stats.Attack.ToString());
+        block.SetText(item.stats.Block.ToString());
+        crit.SetText(item.stats.Crit.ToString());
+        dodge.SetText(item.stats.Dodge.ToString());
+
+
 
     }
 
     void Start()
     {
-        
+        ColorUtility.TryParseHtmlString(htmlValue, out newCol);
     }
 
     // Update is called once per frame

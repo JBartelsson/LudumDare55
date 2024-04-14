@@ -146,6 +146,57 @@ public class BoosterUI : MonoBehaviour
         
 
     }
+
+
+    public BodyPartSO DrawEnemyParts(SpecificBodyPart part)
+    {
+        //
+        BodyPartSO returnLimbs;
+
+        // compute total weight, init some stuff
+
+        int itemRar = 0;
+        int total = 0;
+        foreach (var weight in chance)
+        {
+            total += weight;
+        }
+
+
+
+        //calculate rarity
+        float rand = Random.Range(0.0f, total);
+        foreach (var weight in chance)
+        {
+            if (rand <= weight)
+            {
+                break;
+            }
+            else
+            {
+                rand -= weight;
+                itemRar++;
+            }
+        }
+   
+        
+
+        
+
+        //filter limb list
+        List<BodyPartSO> elgibleLimbs = BodyPartManager.Instance.bodyParts.Where((bodyPart) =>
+        {
+            return (bodyPart.bodyPosition == part && (int)bodyPart.rarity == itemRar);
+
+        }).ToList();
+        
+
+        int limb = Random.Range(0, elgibleLimbs.Count - 1);
+        return elgibleLimbs[limb];
+
+
+
+    }
     // Start is called before the first frame update
     void Start()
     {
