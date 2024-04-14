@@ -80,14 +80,14 @@ public class Entity : MonoBehaviour
         return false;
     }
 
-    public void HitAnimation()
+    public void HitAnimation(bool dodged)
     {
-        AnimationManager.Instance.AttackEffect(animationPoint.transform);
+        AnimationManager.Instance.AttackEffect(animationPoint.transform, dodged);
     }
 
     public void DodgeAnimation()
     {
-        HitAnimation();
+        HitAnimation(true);
         AnimationManager.Instance.DodgeEffect(animationPoint.transform);
 
     }
@@ -127,7 +127,7 @@ public class Entity : MonoBehaviour
 
         if (!crit)
         {
-            HitAnimation();
+            HitAnimation(false);
         } else
         {
             CritAnimation();
