@@ -16,11 +16,11 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Head of a Griffin
   bodyPosition: 5
-  rarity: 1
+  rarity: 2
   stats:
     HP: 2
     Attack: 2
     Block: 2
     Crit: 4
     Dodge: 0
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: 69242c4a9fcf8b247a49030127341002, type: 3}

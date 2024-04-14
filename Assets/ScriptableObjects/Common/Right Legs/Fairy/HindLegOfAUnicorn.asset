@@ -16,11 +16,11 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Hind Leg of a Unicorn
   bodyPosition: 1
-  rarity: 1
+  rarity: 2
   stats:
     HP: 0
     Attack: 2
     Block: 0
     Crit: 4
     Dodge: 4
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: cd8968949800a7d49b890f8f7ee9ab43, type: 3}

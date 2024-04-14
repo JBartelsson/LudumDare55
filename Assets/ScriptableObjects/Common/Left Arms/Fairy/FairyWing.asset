@@ -16,11 +16,11 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Fairy Wing
   bodyPosition: 2
-  rarity: 1
+  rarity: 2
   stats:
     HP: 0
     Attack: 4
     Block: 0
     Crit: 0
     Dodge: 6
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: b1c37f18a2b6426438526feaad8fa945, type: 3}

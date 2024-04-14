@@ -16,11 +16,11 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Mermaid Fin
   bodyPosition: 0
-  rarity: 1
+  rarity: 2
   stats:
     HP: 2
     Attack: 0
     Block: 2
     Crit: 4
     Dodge: 2
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: 35fedc2fc0513ba47913f9770b09f82b, type: 3}

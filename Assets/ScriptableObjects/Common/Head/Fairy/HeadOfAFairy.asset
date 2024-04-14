@@ -16,11 +16,11 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Head of a Fairy
   bodyPosition: 5
-  rarity: 1
+  rarity: 2
   stats:
     HP: 0
     Attack: 2
     Block: 0
     Crit: 8
     Dodge: 0
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: 9120fba90bb18c9418886a7469222b05, type: 3}

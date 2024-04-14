@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9ec4e62461d7cdb4ebad04dd1a9efeff, type: 3}
-  m_Name: ArmOfADementor
+  m_Name: ArmOfATroll
   m_EditorClassIdentifier: 
   type: 0
   isDefault: 0
-  bodyPartname: Arm of a Unicorn
+  bodyPartname: Arm of a Troll
   bodyPosition: 3
-  rarity: 1
+  rarity: 0
   stats:
-    HP: 2
-    Attack: 2
+    HP: 1
+    Attack: 1
     Block: 0
-    Crit: 4
-    Dodge: 2
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+    Crit: 2
+    Dodge: 1
+  sprite: {fileID: 21300000, guid: f5d093c3733e09e4e922a91cf44f4a87, type: 3}

@@ -16,11 +16,11 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Body of a Mermaid
   bodyPosition: 4
-  rarity: 1
+  rarity: 2
   stats:
     HP: 0
     Attack: 0
     Block: 4
     Crit: 2
     Dodge: 4
-  sprite: {fileID: 21300000, guid: 560de33f42d8a314c878c87c95118676, type: 3}
+  sprite: {fileID: 21300000, guid: dde4561603edba8489c55aab64c3c267, type: 3}
