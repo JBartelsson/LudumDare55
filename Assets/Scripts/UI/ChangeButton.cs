@@ -8,6 +8,8 @@ public class ChangeButton : MonoBehaviour
 {
     
     public Color[] rarityColor = {new Color(), new Color(), new Color()};
+    public Color[] rarityColor1 = { new Color(), new Color(), new Color() };
+    public Color[] rarityColor2 = { new Color(), new Color(), new Color() };
     public Color[] typeColor1 = { new Color(), new Color(), new Color() };
     public Color[] typeColor2 = { new Color(), new Color(), new Color() };
     // Start is called before the first frame update
@@ -17,6 +19,8 @@ public class ChangeButton : MonoBehaviour
     [SerializeField] private Image topRight;
     [SerializeField] private Image topLeft;
     [SerializeField] private Image smallFrame;
+
+    [SerializeField] private Image partSprite;
 
     [SerializeField] private Button backgroundButton;
     [SerializeField] private TMP_Text name;
@@ -32,7 +36,7 @@ public class ChangeButton : MonoBehaviour
 
     [SerializeField] 
 
-    void changeButtonContent(BodyPartSO item)
+    public void changeButtonContent(BodyPartSO item)
     {
         currentPart = item;
         type.SetText(item.type.ToString());
@@ -44,6 +48,7 @@ public class ChangeButton : MonoBehaviour
 
         int typeNum = (int)item.type;
         int rarity = (int)item.rarity;
+        Debug.Log("rarity:" + rarity);
         frame.GetComponent<Image>().color = typeColor1[typeNum];
         bottomRight.GetComponent<Image>().color = typeColor2[typeNum];
         bottomLeft.GetComponent<Image>().color = typeColor2[typeNum];
@@ -51,10 +56,31 @@ public class ChangeButton : MonoBehaviour
         topLeft.GetComponent<Image>().color = typeColor2[typeNum];
         smallFrame.GetComponent<Image>().color = typeColor2[typeNum];
 
-        backgroundButton.GetComponent<Image>().color = rarityColor[rarity];
+        partSprite.GetComponent<Image>().sprite = item.sprite;
+
+        
+        
+
+
+        
+
+        var colors = backgroundButton.GetComponent<Button>().colors;
+        colors.normalColor = rarityColor[rarity];
+        colors.highlightedColor = rarityColor1[rarity];
+        colors.pressedColor = rarityColor2[rarity];
+
+
+        backgroundButton.GetComponent<Button>().colors = colors;
+
 
     }
 
+
+    public void onClick()
+    {
+        GameManager.Instance.SwitchBodyPart(currentPart);
+
+    }
     void Start()
     {
         //fairy blue
@@ -76,9 +102,46 @@ public class ChangeButton : MonoBehaviour
         //rarity uncommon blau
         ColorUtility.TryParseHtmlString("#00CCFF", out rarityColor[1]);
         //rarity rare violet
-        ColorUtility.TryParseHtmlString("9900CC", out rarityColor[2]);
+        ColorUtility.TryParseHtmlString("#B600E2", out rarityColor[2]);
 
 
+        rarityColor1[0] = (rarityColor[0] * 1.5f);
+        rarityColor1[0].a = 1;
+        rarityColor1[1] = (rarityColor[1] * 1.5f);
+        rarityColor1[1].a = 1;
+        rarityColor1[2] = (rarityColor[2] * 1.5f);
+        rarityColor1[2].a = 1;
+
+        rarityColor2[0] = (rarityColor[0] * 0.5f);
+        rarityColor2[0].a = 1;
+        rarityColor2[1] = (rarityColor[1] * 0.5f);
+        rarityColor2[1].a = 1;
+        rarityColor2[2] = (rarityColor[2] * 0.5f);
+        rarityColor2[2].a = 1;
+
+
+
+        //rarity hovered
+        //rarity common grün
+        //ColorUtility.TryParseHtmlString("#00CC00", out rarityColor1[0]);
+        //rarity uncommon blau
+        //ColorUtility.TryParseHtmlString("#00CCFF", out rarityColor1[1]);
+        //rarity rare violet
+        //ColorUtility.TryParseHtmlString("#B600E2", out rarityColor1[2]);
+
+        //rarity clicked
+        //rarity common grün
+        // ColorUtility.TryParseHtmlString("#00CC00", out rarityColor2[0]);
+        //rarity uncommon blau
+        //ColorUtility.TryParseHtmlString("#00CCFF", out rarityColor2[1]);
+        //rarity rare violet
+        //ColorUtility.TryParseHtmlString("#B600E2", out rarityColor2[2]);
+
+        if (!currentPart.isDefault)
+        {
+            changeButtonContent(currentPart);
+        }
+        
     }
 
     // Update is called once per frame

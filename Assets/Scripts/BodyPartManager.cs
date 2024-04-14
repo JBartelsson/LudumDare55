@@ -24,7 +24,7 @@ public class BodyPartManager : MonoBehaviour
     [SerializeField] public Entity player;
     public int[] chance = { 100, 90, 50 };
 
-    public void DrawParts()
+    public List<BodyPartSO> DrawParts()
     {
         //
         List<BodyPartSO> shopLimbs = new List<BodyPartSO>();
@@ -147,12 +147,12 @@ public class BodyPartManager : MonoBehaviour
 
         //calculate item
 
-
+        
         foreach (var part in shopLimbs)
         {
             Debug.Log("Shopitem: " + part.name);
         }
-
+        return shopLimbs;
 
     }
 

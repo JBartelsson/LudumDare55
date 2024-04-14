@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     [Header("Fighting Options")]
     [SerializeField] private bool continueFighting = false;
     [SerializeField] private float fightAttackDelay = 1f;
+    [SerializeField] private BoosterUI shopWindow;
     private int round = 1;
     private void Awake()
     {
@@ -165,6 +166,18 @@ public class GameManager : MonoBehaviour
     public void SwitchBodyPart(BodyPartSO bodyPartSO)
     {
         playerEntity.SwitchBodyPart(bodyPartSO);
+        shopWindow.CloseShop();
+    }
+
+    public void SkipChoice()
+    {
+        shopWindow.CloseShop();
+    }
+
+    public void OpenShop()
+    {
+        List<BodyPartSO> shopItems = BodyPartManager.Instance.DrawParts();
+        shopWindow.DrawShop(shopItems);
     }
 
     private void CalculateAttack(Entity attacker, Entity target)
