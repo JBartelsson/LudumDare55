@@ -41,7 +41,6 @@ public class BodyPartSO : ScriptableObject
         {
             rarity = Rarity.Legendary;
         }
-        EditorUtility.SetDirty(this);
     }
 
 }

@@ -51,7 +51,6 @@ public class GameManager : MonoBehaviour
                 break;
             case GameState.Choosing:
                 OpenShop();
-                AudioManager.Instance.StopMusic();
                 break;
             case GameState.Pause:
                 break;
@@ -78,6 +77,7 @@ public class GameManager : MonoBehaviour
 
         int round = 0;
         bool playerWin = false;
+        AudioManager.Instance.StopMusic();
         AudioManager.Instance.PlayFightMusic();
         while (continueFighting)
         {
