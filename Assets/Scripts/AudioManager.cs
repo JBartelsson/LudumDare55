@@ -8,8 +8,8 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance;
     
-    public Sound[] musicSounds, fairyMusicSounds, foodMusicSounds, undergroundMusicSounds, sfxSounds;
-    public AudioSource musicSource, fairyMusicSource, foodMusicSource, undergroundMusicSource, sfxSource;
+    public Sound[] musicSounds, fairyMusicSounds, foodMusicSounds, undergroundMusicSounds, loopedSFXSounds, sfxSounds, sfxLayerSounds;
+    public AudioSource musicSource, fairyMusicSource, foodMusicSource, undergroundMusicSource, loopedSFXSource, sfxSource, sfxLayerSource;
 
     [SerializeField] private float minPitch = 0.5f;
     [SerializeField] private float maxPitch = 1.5f;
@@ -45,6 +45,22 @@ public class AudioManager : MonoBehaviour
             PlaySFX("UndergroundHit");
         }
     }
+
+    public void PlayDodgeSound()
+    {
+        PlaySFX("Dodge");
+    }
+    
+    public void PlayCritSound()
+    {
+        PlayHitSound();
+        PlaySFXLayer("Crit");
+    }
+
+    public void PlayLowLifeLoop()
+    {
+        PlayLoopedSFX("LowLifeLoop");
+    }
     
     public void PlaySFX(string name)
     {
@@ -63,6 +79,46 @@ public class AudioManager : MonoBehaviour
             sfxSource.PlayOneShot(s.clip);
         }
     }
+    
+    public void PlaySFXLayer(string name)
+    {
+        Sound s = Array.Find(sfxLayerSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("Sound Not Found");
+        }
+
+        else
+        {
+            float randomPitch = Random.Range(minPitch, maxPitch);
+
+            sfxLayerSource.pitch = randomPitch;
+            sfxLayerSource.PlayOneShot(s.clip);
+        }
+    }
+    
+    public void PlayLoopedSFX(string name)
+    {
+        Sound s = Array.Find(loopedSFXSounds, x => x.name == name);
+
+        if (s == null)
+        {
+            Debug.Log("SFX-Loop Not Found");
+        }
+
+        else
+        {
+            loopedSFXSource.clip = s.clip;
+            loopedSFXSource.Play();
+        }
+    }
+    
+    public void StopLoopedSFX()
+    {
+        loopedSFXSource.Stop();
+    }
+
     public void PlayFightMusic()
     {
         if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) >= 1)
@@ -137,16 +193,5 @@ public class AudioManager : MonoBehaviour
             undergroundMusicSource.clip = s.clip;
             undergroundMusicSource.Play();
         }
-    }    
-
-    
-    
-    /*public void StopSFX()
-    {
-        sfxSource.DOFade(0, .3f).OnComplete(() =>
-        {
-            sfxSource.Stop();
-            sfxSource.volume = 1f;
-        });
-    }*/
+    }
 }
