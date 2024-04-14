@@ -111,12 +111,18 @@ public class Entity : MonoBehaviour
 
     public void HitAnimation(bool dodged, bool crit, int damage = 0)
     {
+        if (crit)
+        {
+            AudioManager.Instance.PlayCritSound();
+
+        }
         AnimationManager.Instance.AttackEffect(animationPoint.transform, attackNumberAnimationPosition.transform.position, dodged, damage, crit);
     }
 
     public void DodgeAnimation()
     {
         HitAnimation(true, false);
+        AudioManager.Instance.PlayDodgeSound();
         AnimationManager.Instance.DodgeEffect(animationPoint.transform);
 
     }
