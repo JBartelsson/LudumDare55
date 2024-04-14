@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 5318041667546602883}
   - component: {fileID: 8398459874892102920}
   - component: {fileID: 9073087352284738971}
+  - component: {fileID: 5553756232157116235}
   m_Layer: 5
   m_Name: StatsCanvas
   m_TagString: Untagged
@@ -428,7 +429,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &9073087352284738971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -446,6 +447,23 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &5553756232157116235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3945976574446242689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96d52e1d7a15f7b4d9eaed49fe0a4335, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpText: {fileID: 6573930863628343647}
+  dmgText: {fileID: 4835114731072790942}
+  shieldText: {fileID: 2179189221133289661}
+  critText: {fileID: 7026390552484796957}
+  dodgeText: {fileID: 8432233216353244033}
 --- !u!1 &3999241804328368702
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,7 +758,7 @@ RectTransform:
   m_GameObject: {fileID: 5989105157610187993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.7576, y: 1.7576, z: 1.7576}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4612300055987696192}
@@ -752,7 +770,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -17, y: -78}
+  m_AnchoredPosition: {x: -112, y: -78}
   m_SizeDelta: {x: 250, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8507888340339900444

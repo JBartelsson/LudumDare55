@@ -63,6 +63,8 @@ public class GameManager : MonoBehaviour
     {
         enemyEntity.CalculateStats();
         playerEntity.CalculateStats();
+        UpdateStats();
+
         int round = 0;
         bool playerWin = false;
         AudioManager.Instance.PlayFightMusic();
@@ -77,6 +79,7 @@ public class GameManager : MonoBehaviour
                 
                 CalculateAttack(playerEntity, enemyEntity);
             }
+            UpdateStats();
             if (enemyEntity.EntityFightingStats.HP <= 0)
             {
                 playerWin = true;
@@ -91,6 +94,7 @@ public class GameManager : MonoBehaviour
 
                 CalculateAttack(enemyEntity, playerEntity);
             }
+            UpdateStats();
             if (playerEntity.EntityFightingStats.HP <= 0)
             {
                 playerWin = false;
@@ -110,6 +114,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void UpdateStats()
+    {
+        playerEntity.UpdateStats();
+        enemyEntity.UpdateStats();
+    }
     private bool CheckDodge(Entity entity)
     {
         return entity.IsDodging();

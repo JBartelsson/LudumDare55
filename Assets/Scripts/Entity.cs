@@ -37,6 +37,7 @@ public class Entity : MonoBehaviour
     [SerializeField] private GameObject blockAnimationPosition;
     [SerializeField] private GameObject attackNumberAnimationPosition;
     [SerializeField] private Animator attackAnimator;
+    [SerializeField] private StatsUIController statsUI;
     [SerializeField] bool isPlayer = false;
     public List<PositionedBodyPart> standardEnemySetup;
 
@@ -55,6 +56,11 @@ public class Entity : MonoBehaviour
             }
         }
         return amount;
+    }
+
+    public void UpdateStats()
+    {
+        statsUI.UpdateUI(this);
     }
 
     public void SwitchBodyPart(BodyPartSO newBodyPart)

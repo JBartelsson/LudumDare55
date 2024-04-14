@@ -16,8 +16,8 @@ public class StatsUIController : MonoBehaviour
         hpText.text = entity.entityFightingStats.HP.ToString();
         dmgText.text = entity.entityFightingStats.Attack.ToString();
         shieldText.text = entity.entityFightingStats.Block.ToString();
-        critText.text = entity.entityFightingStats.Crit.ToString();
-        dodgeText.text = entity.entityFightingStats.Dodge.ToString();
+        critText.text = entity.entityFightingStats.Crit.ToString() +"%";
+        dodgeText.text = entity.entityFightingStats.Dodge.ToString() + "%";
 
     }
 }
