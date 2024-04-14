@@ -1,18 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.ConstrainedExecution;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
 public class GameManager : MonoBehaviour
 {
-    public GameManager Instance { get; private set; }
+    public static GameManager Instance { get; private set; }
     public enum GameState
     {
         Fighting, Choosing, Pause, None
     }
     public GameState currentGameState = GameState.None;
-    private Entity playerEntity;
-    private Entity enemyEntity;
+    public Entity playerEntity;
+    public Entity enemyEntity;
     [Header("Fighting Options")]
     [SerializeField] private bool continueFighting = false;
     [SerializeField] private float fightAttackDelay = 1f;
@@ -93,11 +94,11 @@ public class GameManager : MonoBehaviour
 
     private void CalculateAttack(Entity attacker, Entity target)
     {
-
-        int LeftOverDamageFromBlock = target.Block(attacker.GetAttackDamage());
+        bool crit = attacker.GetAttackDamage(out int damage);
+        int LeftOverDamageFromBlock = target.Block(damage);
         if (LeftOverDamageFromBlock > 0)
         {
-            target.Hit(LeftOverDamageFromBlock);
+            target.Hit(LeftOverDamageFromBlock, crit);
         }
 
     }

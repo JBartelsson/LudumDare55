@@ -28,6 +28,7 @@ public class Entity : MonoBehaviour
     }
     [SerializeField] public List<PositionedBodyPart> bodyParts = new();
     [SerializeField] public List<BodySprite> bodyPartSprites = new();
+    [SerializeField] private GameObject animationPoint;
 
     public Stats EntityFightingStats { get => entityFightingStats; set => entityFightingStats = value; }
 
@@ -49,17 +50,20 @@ public class Entity : MonoBehaviour
         }
     }
 
-    public int GetAttackDamage()
+    public bool GetAttackDamage(out int damage)
     {
         float critChance = entityFightingStats.Crit * BodyPartManager.Instance.CritChanceBalancingMultiplier;
         float attack = entityFightingStats.Attack;
+        bool crit = false;
         if (UnityEngine.Random.Range(0, 101) < critChance)
         {
             attack = attack * BodyPartManager.Instance.CritChanceMultiplier;
+            crit = true;
             Debug.Log($"{gameObject.name} CRITS!!!");
         }
         Debug.Log($"{gameObject.name} Preparing to Attack for {attack}");
-        return Mathf.FloorToInt(attack);
+        damage = Mathf.FloorToInt(attack);
+        return crit;
     }
 
     public bool IsDodging() { 
@@ -78,16 +82,19 @@ public class Entity : MonoBehaviour
 
     public void HitAnimation()
     {
-
+        AnimationManager.Instance.AttackEffect(animationPoint.transform);
     }
 
     public void DodgeAnimation()
     {
+        HitAnimation();
+        AnimationManager.Instance.DodgeEffect(animationPoint.transform);
 
     }
 
     public void BlockAnimation()
     {
+        AnimationManager.Instance.BlockEffect(animationPoint.transform);
 
     }
 
@@ -113,12 +120,26 @@ public class Entity : MonoBehaviour
         return damage;
     }
 
-    public void Hit(int damage)
+    public void Hit(int damage, bool crit)
     {
         entityFightingStats.HP -= damage;
         Debug.Log($"{gameObject.name} hit by {damage} Damage!");
 
-        HitAnimation();
+        if (!crit)
+        {
+            HitAnimation();
+        } else
+        {
+            CritAnimation();
+        }
+        
+
+    }
+
+    private void CritAnimation()
+    {
+
+        AnimationManager.Instance.CritEffect(animationPoint.transform);
 
     }
 
