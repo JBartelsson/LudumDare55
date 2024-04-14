@@ -45,7 +45,7 @@ public class ChangeButton : MonoBehaviour
 
     void Start()
     {
-        ColorUtility.TryParseHtmlString(htmlValue, out newCol);
+        //ColorUtility.TryParseHtmlString(htmlValue, out newCol);
     }
 
     // Update is called once per frame

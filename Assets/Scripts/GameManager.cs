@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -41,6 +43,7 @@ public class GameManager : MonoBehaviour
                 StartCoroutine(StartFighting());
                 break;
             case GameState.Choosing:
+                SwitchState(GameState.Fighting);
                 break;
             case GameState.Pause:
                 break;
@@ -97,8 +100,11 @@ public class GameManager : MonoBehaviour
         if (playerWin)
         {
             Debug.Log("Player won!");
+            HandleWin();
         } else
         {
+            TriggerGameOver();
+
             Debug.Log("Enemy Won!");
         }
     }
@@ -106,6 +112,29 @@ public class GameManager : MonoBehaviour
     private bool CheckDodge(Entity entity)
     {
         return entity.IsDodging();
+    }
+
+    public void TriggerGameOver()
+    {
+
+    }
+
+    public void HandleWin()
+    {
+        CreateNewEnemy();
+        SwitchState(GameState.Choosing);
+    }
+
+    public void CreateNewEnemy()
+    {
+        List<Entity.SpecificBodyPart> list = new List<Entity.SpecificBodyPart>() { Entity.SpecificBodyPart.LeftLeg, Entity.SpecificBodyPart.RightLeg, Entity.SpecificBodyPart.LeftArm, Entity.SpecificBodyPart.RightArm, Entity.SpecificBodyPart.Body, Entity.SpecificBodyPart.Head };
+        int nonDefaultItemsOfPlayer = playerEntity.bodyParts.Where((x) => { return !x.bodyPartSO.isDefault; }).Count();
+
+        for (int i = 0; i < nonDefaultItemsOfPlayer; i++)
+        {
+
+        }
+        Debug.Log($"Non default items: {nonDefaultItemsOfPlayer}");
     }
 
     private void CalculateAttack(Entity attacker, Entity target)

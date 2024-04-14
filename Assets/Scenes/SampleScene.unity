@@ -578,7 +578,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.HP
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Crit
@@ -852,6 +852,9 @@ MonoBehaviour:
   critTextEffect: {fileID: 6083507971864807575, guid: 54437b3833d9b7142b626547c4527598, type: 3}
   dodgeEffect: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}
   dodgeTextEffect: {fileID: 6620339049064059371, guid: fe6e5318cdd45ab48bd9416d2ff26239, type: 3}
+  blockedPosition: {fileID: 0}
+  attackNumberText: {fileID: 7038717747116126592, guid: e0232756ed830a949b9907e1577b9d83, type: 3}
+  blockNumberText: {fileID: 0}
   effectTime: 2.5
 --- !u!1 &1696716832
 GameObject:
@@ -1017,7 +1020,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.HP
-      value: 1000
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6173432706787004854, guid: 65f8de69404e30e4eb2e1fd23e3bb3dc, type: 3}
       propertyPath: entityBaseStats.Crit

@@ -33,6 +33,9 @@ public class Entity : MonoBehaviour
     [SerializeField] private GameObject animationPoint;
     [SerializeField] private GameObject animationBackPoint;
     [SerializeField] private GameObject animationFrontPoint;
+    [SerializeField] private GameObject blockNumberAnimationPosition;
+    [SerializeField] private GameObject blockAnimationPosition;
+    [SerializeField] private GameObject attackNumberAnimationPosition;
     [SerializeField] private Animator attackAnimator;
     [SerializeField] bool isPlayer = false;
 
@@ -99,21 +102,21 @@ public class Entity : MonoBehaviour
         return false;
     }
 
-    public void HitAnimation(bool dodged)
+    public void HitAnimation(bool dodged, bool crit, int damage = 0)
     {
-        AnimationManager.Instance.AttackEffect(animationPoint.transform, dodged);
+        AnimationManager.Instance.AttackEffect(animationPoint.transform, attackNumberAnimationPosition.transform.position, dodged, damage, crit);
     }
 
     public void DodgeAnimation()
     {
-        HitAnimation(true);
+        HitAnimation(true, false);
         AnimationManager.Instance.DodgeEffect(animationPoint.transform);
 
     }
 
-    public void BlockAnimation()
+    public void BlockAnimation(int damage)
     {
-        AnimationManager.Instance.BlockEffect(animationPoint.transform);
+        AnimationManager.Instance.BlockEffect(animationPoint.transform, blockAnimationPosition.transform.position, blockNumberAnimationPosition.transform.position, damage);
 
     }
 
@@ -138,18 +141,21 @@ public class Entity : MonoBehaviour
         //Debug.Log($"{gameObject.name} having {entityFightingStats.Block} block");
         if (entityFightingStats.Block > 0)
         {
+            int blockedDamage = 0;
+
             if (entityFightingStats.Block - damage > 0)
             {
                 Debug.Log($"{gameObject.name} Blocked {damage} Damage!");
+                blockedDamage = damage;
             }
             else
             {
                 Debug.Log($"{gameObject.name} Blocked {entityFightingStats.Block} Damage!");
-
+                blockedDamage = entityFightingStats.Block;
             }
             entityFightingStats.Block -= damage;
 
-            BlockAnimation();
+            BlockAnimation(blockedDamage);
             return -entityFightingStats.Block;
         }
         return damage;
@@ -159,15 +165,7 @@ public class Entity : MonoBehaviour
     {
         entityFightingStats.HP -= damage;
         Debug.Log($"{gameObject.name} hit by {damage} Damage!");
-
-        if (!crit)
-        {
-            HitAnimation(false);
-        }
-        else
-        {
-            CritAnimation();
-        }
+        HitAnimation(false,crit, damage);
 
 
     }
