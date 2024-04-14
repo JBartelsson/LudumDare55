@@ -29,8 +29,11 @@ public class AudioManager : MonoBehaviour
 
     public void PlayHitSound()
     {
+        Debug.Log("Try to Hit");
+
         if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) && GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground))
         {
+            Debug.Log("FairyHit");
             PlaySFX("FairyHit");
         }
         else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) && GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) > GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground))

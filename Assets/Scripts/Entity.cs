@@ -1,3 +1,4 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -30,7 +31,10 @@ public class Entity : MonoBehaviour
     [SerializeField] public List<PositionedBodyPart> bodyParts = new();
     [SerializeField] public List<BodySprite> bodyPartSprites = new();
     [SerializeField] private GameObject animationPoint;
+    [SerializeField] private GameObject animationBackPoint;
+    [SerializeField] private GameObject animationFrontPoint;
     [SerializeField] private Animator attackAnimator;
+    [SerializeField] bool isPlayer = false;
 
     public Stats EntityFightingStats { get => entityFightingStats; set => entityFightingStats = value; }
 
@@ -80,7 +84,8 @@ public class Entity : MonoBehaviour
         return crit;
     }
 
-    public bool IsDodging() { 
+    public bool IsDodging()
+    {
         float dodgeChance = entityFightingStats.Dodge * BodyPartManager.Instance.DodgeBalancingMultiplier;
         if (UnityEngine.Random.Range(0, 101) < dodgeChance)
         {
@@ -114,7 +119,16 @@ public class Entity : MonoBehaviour
 
     public float AttackAnimation()
     {
-        attackAnimator.Play("AttackAnimation", -1, 0f);
+        float animationBackDuration = .33f;
+        float animationFrontDuration = .3f;
+        Vector3 originalPosition = transform.position;
+            transform.DOMove(animationBackPoint.transform.position, animationBackDuration).OnComplete(() =>
+            {
+                transform.DOMove(animationFrontPoint.transform.position, animationFrontDuration).OnComplete(() =>
+                {
+                    transform.DOMove(originalPosition, animationBackDuration);
+                });
+            });
         return 0f;
     }
 
@@ -127,13 +141,14 @@ public class Entity : MonoBehaviour
             if (entityFightingStats.Block - damage > 0)
             {
                 Debug.Log($"{gameObject.name} Blocked {damage} Damage!");
-            } else
+            }
+            else
             {
                 Debug.Log($"{gameObject.name} Blocked {entityFightingStats.Block} Damage!");
 
             }
             entityFightingStats.Block -= damage;
-            
+
             BlockAnimation();
             return -entityFightingStats.Block;
         }
@@ -148,11 +163,12 @@ public class Entity : MonoBehaviour
         if (!crit)
         {
             HitAnimation(false);
-        } else
+        }
+        else
         {
             CritAnimation();
         }
-        
+
 
     }
 
@@ -167,7 +183,7 @@ public class Entity : MonoBehaviour
     {
         return entityFightingStats.HP <= 0;
     }
-    
+
     void Start()
     {
         UpdateBodyGraphics();
@@ -186,6 +202,6 @@ public class Entity : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

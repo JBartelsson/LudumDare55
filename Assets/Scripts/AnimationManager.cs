@@ -37,6 +37,8 @@ public class AnimationManager : MonoBehaviour
         if (!dodged) { 
         GameObject effectTextGameObject = Instantiate(attackTextEffect, effectParent);
         effectTextGameObject.transform.position = animateTarget.position;
+        AudioManager.Instance.PlayHitSound();
+
         }
 
         GameObject effectGameObject = Instantiate(attackEffect, effectParent);

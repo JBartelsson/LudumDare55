@@ -61,14 +61,16 @@ public class GameManager : MonoBehaviour
         playerEntity.ResetStats();
         int round = 0;
         bool playerWin = false;
+        AudioManager.Instance.PlayFightMusic();
         while (continueFighting)
         {
             round++;
             Debug.Log($"=================Round: {round}==================");
+            playerEntity.AttackAnimation();
+            yield return new WaitForSeconds(.33f);
             if (!CheckDodge(enemyEntity))
             {
-                playerEntity.AttackAnimation();
-                yield return new WaitForSeconds(.33f);
+                
                 CalculateAttack(playerEntity, enemyEntity);
             }
             if (enemyEntity.EntityFightingStats.HP <= 0)
@@ -77,9 +79,11 @@ public class GameManager : MonoBehaviour
                 break;
             }
             yield return new WaitForSeconds(fightAttackDelay);
+            enemyEntity.AttackAnimation();
+            yield return new WaitForSeconds(.33f);
             if (!CheckDodge(playerEntity))
             {
-                enemyEntity.AttackAnimation();
+                
 
                 CalculateAttack(enemyEntity, playerEntity);
             }
