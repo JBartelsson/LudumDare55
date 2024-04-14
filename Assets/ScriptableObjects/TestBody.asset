@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TestBody
   m_EditorClassIdentifier: 
   type: 0
+  isDefault: 1
   bodyPosition: 4
   rarity: 0
   stats:

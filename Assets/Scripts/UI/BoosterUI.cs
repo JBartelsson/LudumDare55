@@ -3,13 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.U2D.IK;
+using UnityEngine.UI;
 using static Entity;
 
 public class BoosterUI : MonoBehaviour
 {
     [SerializeField] public int stage = 0;
     [SerializeField] public Entity player;
-    public int[] chance = {100,0,0};
+    public int[] chance = {100,90,50};
+    [SerializeField] private Button Upgrade_button1;
+    [SerializeField] private Button Upgrade_button2;
+    [SerializeField] private Button Upgrade_button3;
+    [SerializeField] private Button Upgrade_button4;
+
 
     public void DrawParts()
     {
@@ -78,7 +85,8 @@ public class BoosterUI : MonoBehaviour
         for (int i = 0; i < iterate; i++)
         {
             var part = missingParts[i];
-
+            Debug.Log("ItemRarity:" + itemRar[i]);
+            Debug.Log("BodyPart:" + part);
             //filter limb list
             List<BodyPartSO> elgibleLimbs = BodyPartManager.Instance.bodyParts.Where((bodyPart) =>
             {
@@ -88,6 +96,7 @@ public class BoosterUI : MonoBehaviour
             bool found = false;
             while(!found) {
                 int limb = Random.Range(0, elgibleLimbs.Count-1);
+                Debug.Log("Limb:" + limb);
                 PositionedBodyPart existingLimb = player.bodyParts.FirstOrDefault(i => i.bodyPartSO == elgibleLimbs[limb]);
                 if (null == existingLimb)
                 {
@@ -114,7 +123,7 @@ public class BoosterUI : MonoBehaviour
             {
                 int limb = Random.Range(0, elgibleLimbs.Count - 1);
                 PositionedBodyPart existingLimb = player.bodyParts.FirstOrDefault(i => i.bodyPartSO == elgibleLimbs[limb]);
-                if (null == existingLimb)
+                if (null == existingLimb && !shopLimbs.Contains(elgibleLimbs[limb]))
                 {
                     shopLimbs.Add(elgibleLimbs[limb]);
                     found = true;
@@ -127,17 +136,21 @@ public class BoosterUI : MonoBehaviour
         }
 
 
-            //calculate item
+        //calculate item
 
 
-
-
+        foreach (var part in shopLimbs)
+        {
+            Debug.Log("Shopitem: " + part.name);
+        }
+        
 
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        this.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Entity>();
+        DrawParts();
     }
 
     // Update is called once per frame

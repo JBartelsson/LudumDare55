@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TestArmLeft
   m_EditorClassIdentifier: 
   type: 0
+  isDefault: 1
   bodyPosition: 2
   rarity: 0
   stats:

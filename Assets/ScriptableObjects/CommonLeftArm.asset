@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ec4e62461d7cdb4ebad04dd1a9efeff, type: 3}
+  m_Name: CommonLeftArm
+  m_EditorClassIdentifier: 
+  type: 0
+  isDefault: 0
+  bodyPosition: 2
+  rarity: 0
+  stats:
+    HP: 0
+    Attack: 10
+    Block: 0
+    Crit: 0
+    Dodge: 0
+  sprite: {fileID: 21300000, guid: 9d6106952979e364da38d0f2377015e6, type: 3}

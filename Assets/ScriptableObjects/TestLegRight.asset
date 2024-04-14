@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: TestLegRight
   m_EditorClassIdentifier: 
   type: 0
+  isDefault: 1
   bodyPosition: 1
   rarity: 0
   stats:
