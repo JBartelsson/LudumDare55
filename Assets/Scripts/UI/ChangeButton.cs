@@ -52,7 +52,7 @@ public class ChangeButton : MonoBehaviour
         int typeNum = (int)item.type;
         int rarity = (int)item.rarity;
         Debug.Log("rarity:" + rarity);
-        frame.GetComponent<Image>().color = typeColor1[typeNum];
+        //frame.GetComponent<Image>().color = typeColor1[typeNum];
         bottomRight.GetComponent<Image>().color = typeColor2[typeNum];
         bottomLeft.GetComponent<Image>().color = typeColor2[typeNum];
         topRight.GetComponent<Image>().color = typeColor2[typeNum];
