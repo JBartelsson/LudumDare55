@@ -16,7 +16,7 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Cucumber
   bodyPosition: 2
-  rarity: 2
+  rarity: 1
   stats:
     HP: 0
     Attack: 8

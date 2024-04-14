@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using static Unity.Collections.AllocatorManager;
 
@@ -29,6 +30,14 @@ public class BodyPartSO : ScriptableObject
     [Header("Graphic")]
     [SerializeField] public Sprite sprite;
 
-    
+    private void Awake()
+    {
+        if (rarity == Rarity.Rare)
+        {
+            rarity = Rarity.Legendary;
+        }
+        EditorUtility.SetDirty(this);
+    }
+
 }
 

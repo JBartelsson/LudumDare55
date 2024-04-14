@@ -16,7 +16,7 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Head of a Knight
   bodyPosition: 5
-  rarity: 2
+  rarity: 1
   stats:
     HP: 0
     Attack: 2

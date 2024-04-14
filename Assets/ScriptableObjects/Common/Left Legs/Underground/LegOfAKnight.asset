@@ -16,7 +16,7 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Leg of a Knight
   bodyPosition: 0
-  rarity: 2
+  rarity: 1
   stats:
     HP: 2
     Attack: 2

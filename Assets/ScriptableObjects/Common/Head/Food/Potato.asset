@@ -16,7 +16,7 @@ MonoBehaviour:
   isDefault: 0
   bodyPartname: Potato
   bodyPosition: 5
-  rarity: 2
+  rarity: 1
   stats:
     HP: 2
     Attack: 4

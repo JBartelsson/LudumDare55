@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 0
   isDefault: 0
-  bodyPartname: Arm of a Dementor
+  bodyPartname: Arm of a Unicorn
   bodyPosition: 3
-  rarity: 2
+  rarity: 1
   stats:
     HP: 2
     Attack: 2
