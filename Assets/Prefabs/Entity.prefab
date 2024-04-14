@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5875126712852537496}
   - component: {fileID: 6173432706787004854}
+  - component: {fileID: 958200197663175399}
   m_Layer: 0
   m_Name: Entity
   m_TagString: Untagged
@@ -90,6 +91,28 @@ MonoBehaviour:
   - bodyPosition: 5
     spriteRenderer: {fileID: 2361024278462468178}
   animationPoint: {fileID: 8639369583126089897}
+  attackAnimator: {fileID: 958200197663175399}
+--- !u!95 &958200197663175399
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015632604985786362}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 77a0e20c6cb204945a6bbee1d15bff37, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2099328092480623631
 GameObject:
   m_ObjectHideFlags: 0

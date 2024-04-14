@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using Unity.Mathematics;
 using Unity.VisualScripting;
@@ -29,11 +30,24 @@ public class Entity : MonoBehaviour
     [SerializeField] public List<PositionedBodyPart> bodyParts = new();
     [SerializeField] public List<BodySprite> bodyPartSprites = new();
     [SerializeField] private GameObject animationPoint;
+    [SerializeField] private Animator attackAnimator;
 
     public Stats EntityFightingStats { get => entityFightingStats; set => entityFightingStats = value; }
 
     // Start is called before the first frame update
 
+    public int GetAmountOfItemsOfType(BodyPartSO.Type type)
+    {
+        int amount = 0;
+        foreach (var item in bodyParts)
+        {
+            if (item.bodyPartSO.type == type)
+            {
+                amount++;
+            }
+        }
+        return amount;
+    }
 
     public void SwitchBodyPart(SpecificBodyPart bodyPosition, BodyPartSO newBodyPart)
     {
@@ -96,6 +110,12 @@ public class Entity : MonoBehaviour
     {
         AnimationManager.Instance.BlockEffect(animationPoint.transform);
 
+    }
+
+    public float AttackAnimation()
+    {
+        attackAnimator.Play("AttackAnimation", -1, 0f);
+        return 0f;
     }
 
     public int Block(int damage)

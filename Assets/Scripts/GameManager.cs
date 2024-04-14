@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
         enemyEntity = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Entity>();
 
         SwitchState(currentGameState);
+        Debug.Log($"Fairytale: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale)}");
+        Debug.Log($"Underground: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground)}");
+        Debug.Log($"Food: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food)}");
     }
 
     public void SwitchState(GameState newState)
@@ -46,6 +49,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public int GetAmountOfItemsOfPlayer(BodyPartSO.Type type)
+    {
+        return playerEntity.GetAmountOfItemsOfType(type);
+    }
+
 
     public IEnumerator StartFighting()
     {
@@ -59,6 +67,8 @@ public class GameManager : MonoBehaviour
             Debug.Log($"=================Round: {round}==================");
             if (!CheckDodge(enemyEntity))
             {
+                playerEntity.AttackAnimation();
+                yield return new WaitForSeconds(.33f);
                 CalculateAttack(playerEntity, enemyEntity);
             }
             if (enemyEntity.EntityFightingStats.HP <= 0)
@@ -69,6 +79,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(fightAttackDelay);
             if (!CheckDodge(playerEntity))
             {
+                enemyEntity.AttackAnimation();
+
                 CalculateAttack(enemyEntity, playerEntity);
             }
             if (playerEntity.EntityFightingStats.HP <= 0)

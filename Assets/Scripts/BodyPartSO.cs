@@ -10,7 +10,7 @@ public class BodyPartSO : ScriptableObject
     
     public enum Type
     {
-        FairyTale, Underground, Food
+        FairyTale, Underground, Food, None
     }
     public enum Rarity
     {
