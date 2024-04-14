@@ -206,6 +206,8 @@ public class BodyPartManager : MonoBehaviour
 
 
     }
+
+   
     private void Awake()
     {
         Instance = this;

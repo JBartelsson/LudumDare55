@@ -27,11 +27,14 @@ public class ChangeButton : MonoBehaviour
     [SerializeField] private TMP_Text crit;
     [SerializeField] private TMP_Text dodge;
 
+    [SerializeField] private BodyPartSO currentPart;
+
 
     [SerializeField] 
 
     void changeButtonContent(BodyPartSO item)
     {
+        currentPart = item;
         type.SetText(item.type.ToString());
         hp.SetText(item.stats.HP.ToString());
         attack.SetText(item.stats.Attack.ToString());
@@ -39,13 +42,43 @@ public class ChangeButton : MonoBehaviour
         crit.SetText(item.stats.Crit.ToString());
         dodge.SetText(item.stats.Dodge.ToString());
 
+        int typeNum = (int)item.type;
+        int rarity = (int)item.rarity;
+        frame.GetComponent<Image>().color = typeColor1[typeNum];
+        bottomRight.GetComponent<Image>().color = typeColor2[typeNum];
+        bottomLeft.GetComponent<Image>().color = typeColor2[typeNum];
+        topRight.GetComponent<Image>().color = typeColor2[typeNum];
+        topLeft.GetComponent<Image>().color = typeColor2[typeNum];
+        smallFrame.GetComponent<Image>().color = typeColor2[typeNum];
 
+        backgroundButton.GetComponent<Image>().color = rarityColor[rarity];
 
     }
 
     void Start()
     {
-        //ColorUtility.TryParseHtmlString(htmlValue, out newCol);
+        //fairy blue
+        ColorUtility.TryParseHtmlString("#aae0f0", out typeColor1[0]);
+        //underground orange
+        ColorUtility.TryParseHtmlString("#FA9038", out typeColor1[1]);
+        //food grün
+        ColorUtility.TryParseHtmlString("#B0C5A4", out typeColor1[2]);
+
+        //fairy pink
+        ColorUtility.TryParseHtmlString("#f4c6f2", out typeColor2[0]);
+        //underground rot
+        ColorUtility.TryParseHtmlString("#F11732", out typeColor2[1]);
+        //food gelb
+        ColorUtility.TryParseHtmlString("#F1EF99", out typeColor2[2]);
+
+        //rarity common grün
+        ColorUtility.TryParseHtmlString("#00CC00", out rarityColor[0]);
+        //rarity uncommon blau
+        ColorUtility.TryParseHtmlString("#00CCFF", out rarityColor[1]);
+        //rarity rare violet
+        ColorUtility.TryParseHtmlString("9900CC", out rarityColor[2]);
+
+
     }
 
     // Update is called once per frame
