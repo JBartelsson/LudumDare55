@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
+    
     public void StopMusic()
     {
         musicSource.Stop();
@@ -156,7 +156,7 @@ public class AudioManager : MonoBehaviour
         {
             PlayFairyMusic("FairyMusicLow");
         }
-        else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) >= 3)
+        else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale) >= 2)
         {
             PlayFairyMusic("FairyMusicHigh");
         }
@@ -165,16 +165,16 @@ public class AudioManager : MonoBehaviour
         {
             PlayFoodMusic("FoodMusicLow");
         }
-        else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) >= 3)
+        else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) >= 2)
         {
             PlayFoodMusic("FoodMusicHigh");
         }
         
-        if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) >= 1)
+        if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground) >= 1)
         {
-            PlayFairyMusic("UndergroundMusicLow");
+            PlayUndergroundMusic("UndergroundMusicLow");
         }
-        else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food) >= 3)
+        else if (GameManager.Instance.GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground) >= 2)
         {
             PlayUndergroundMusic("UndergroundMusicHigh");
         }

@@ -40,6 +40,7 @@ public class GameManager : MonoBehaviour
         Debug.Log($"Fairytale: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.FairyTale)}");
         Debug.Log($"Underground: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.Underground)}");
         Debug.Log($"Food: {GetAmountOfItemsOfPlayer(BodyPartSO.Type.Food)}");
+        AudioManager.Instance.PlayFightMusic();
     }
 
     public void SwitchState(GameState newState)
